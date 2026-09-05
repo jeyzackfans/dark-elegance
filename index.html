@@ -6,11 +6,14 @@
     <title>DARK ELEGANCE</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-        body{background:#0a0f1f;color:#fff;padding:40px 20px}
+        body{background:#0a0f1f;color:#fff;padding:40px 20px;transition: all 0.3s ease}
         .contenedor{max-width:1200px;margin:0 auto;text-align:center}
         h1{font-size:48px;letter-spacing:8px;margin-bottom:10px;font-weight:300}
         .subtitulo{color:#b8b8b8;margin-bottom:30px;letter-spacing:2px}
         .etiqueta-edad{display:inline-block;background:#1a233a;border:1px solid #304067;padding:8px 16px;border-radius:20px;color:#94a8d0;margin-bottom:50px}
+
+        /* PANTALLA PRINCIPAL */
+        #pantallaPrincipal{display:block}
         .fila-chicas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
         @media(max-width:900px){.fila-chicas{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:500px){.fila-chicas{grid-template-columns:1fr}}
@@ -18,32 +21,38 @@
         .tarjeta:hover{transform:translateY(-8px);border-color:#405899;box-shadow:0 10px 25px rgba(64,88,153,.2)}
         .foto{width:100%;height:280px;background:#1a233a;border-radius:8px;margin-bottom:20px;background-size:cover;background-position:center}
         .nombre{font-size:20px;letter-spacing:3px;margin-bottom:10px}
-        .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.2s}
+        .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.2s;font-size:16px}
         .boton:hover{background:#354475}
 
-        /* Ventana de perfil */
-        .ventana-perfil{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:500px;background:#12182b;border:1px solid #253050;border-radius:12px;padding:25px;display:none;flex-direction:column;gap:15px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:1000}
-        .cerrar{position:absolute;top:10px;right:15px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
-        .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
-        .galeria-foto{width:100%;aspect-ratio:1/1;background:#1a233a;border-radius:6px}
-        .biografia{font-size:14px;line-height:1.6;color:#ccc}
-        .btn-hablar{background:#405899;font-size:16px;padding:12px}
+        /* SECCIÓN DE PERFIL */
+        .seccion-perfil{display:none;max-width:800px;margin:0 auto;text-align:center}
+        .btn-volver{background:transparent;border:none;color:#94a8d0;font-size:16px;cursor:pointer;margin-bottom:30px;display:inline-flex;align-items:center;gap:8px}
+        .btn-volver:hover{color:#fff}
+        .perfil-foto-principal{width:300px;height:300px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
+        .perfil-nombre{font-size:32px;margin-bottom:20px;letter-spacing:4px}
+        .biografia{font-size:16px;line-height:1.8;color:#ccc;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
+        .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:40px}
+        .galeria-foto{width:100%;aspect-ratio:1/1;background:#1a233a;border-radius:8px;cursor:pointer;transition:.2s}
+        .galeria-foto:hover{transform:scale(1.05)}
+        .btn-hablar{background:#405899;padding:14px 30px;font-size:18px;border-radius:8px}
         .btn-hablar:hover{background:#5068b9}
 
-        /* Ventana de chat */
-        .ventana-chat{position:fixed;bottom:20px;right:20px;width:380px;height:500px;background:#12182b;border:1px solid #253050;border-radius:12px;display:none;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:999}
-        .cabecera-chat{padding:12px;background:#1a233a;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center}
-        .cuerpo-chat{flex:1;padding:15px;overflow-y:auto;font-size:14px;line-height:1.5}
-        .mensaje{margin-bottom:12px;padding:8px 12px;border-radius:18px;max-width:80%}
-        .mensaje-usuario{background:#253050;margin-left:auto}
-        .mensaje-ia{background:#1a233a;margin-right:auto}
-        .caja-texto{display:flex;padding:10px;border-top:1px solid #253050}
-        .caja-texto input{flex:1;padding:10px;background:#0a0f1f;border:1px solid #253050;color:#fff;border-radius:20px;outline:none}
-        .caja-texto button{margin-left:8px;padding:10px 16px;background:#405899;color:#fff;border:none;border-radius:20px;cursor:pointer}
+        /* SECCIÓN DE CHAT */
+        .seccion-chat{display:none;max-width:500px;margin:0 auto}
+        .chat-cabecera{display:flex;align-items:center;gap:15px;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #253050}
+        .chat-cuerpo{height:450px;background:#12182b;border-radius:12px;padding:20px;overflow-y:auto;margin-bottom:15px}
+        .mensaje{margin-bottom:12px;padding:8px 12px;border-radius:18px;max-width:80%;font-size:15px}
+        .mensaje-usuario{background:#253050;margin-left:auto;text-align:right}
+        .mensaje-ia{background:#1a233a;margin-right:auto;text-align:left}
+        .chat-caja{display:flex;gap:10px}
+        .chat-input{flex:1;padding:12px 15px;background:#12182b;border:1px solid #253050;border-radius:20px;color:#fff;outline:none;font-size:15px}
+        .chat-btn{background:#405899;border:none;border-radius:20px;padding:12px 20px;color:#fff;cursor:pointer}
     </style>
 </head>
 <body>
-    <div class="contenedor">
+
+    <!-- PANTALLA PRINCIPAL -->
+    <div class="contenedor" id="pantallaPrincipal">
         <h1>DARK ELEGANCE</h1>
         <p class="subtitulo">Virtual Companions</p>
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
@@ -52,47 +61,32 @@
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=MIDORI')"></div>
                 <h3 class="nombre">MIDORI</h3>
-                <button class="boton" onclick="abrirPerfil('midori')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('midori')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=AYLIN')"></div>
                 <h3 class="nombre">AYLIN</h3>
-                <button class="boton" onclick="abrirPerfil('aylin')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('aylin')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=VALERIA')"></div>
                 <h3 class="nombre">VALERIA</h3>
-                <button class="boton" onclick="abrirPerfil('valeria')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('valeria')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=HISAME')"></div>
                 <h3 class="nombre">HISAME</h3>
-                <button class="boton" onclick="abrirPerfil('hisame')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('hisame')">💬 Conócela</button>
             </div>
         </div>
     </div>
 
-    <!-- VENTANA DE PERFIL -->
-    <div class="ventana-perfil" id="ventanaPerfil">
-        <button class="cerrar" onclick="cerrarPerfil()">✕</button>
-        <h2 id="nombrePerfil"></h2>
-        <div class="galeria" id="galeriaPerfil"></div>
-        <p class="biografia" id="bioPerfil"></p>
-        <button class="boton btn-hablar" id="btnHablar" onclick="iniciarChat()">💬 Háblame</button>
-    </div>
+    <!-- SECCIÓN DE PERFIL (se carga aquí) -->
+    <div id="seccionPerfil" class="seccion-perfil"></div>
 
-    <!-- VENTANA DE CHAT -->
-    <div class="ventana-chat" id="ventanaChat">
-        <div class="cabecera-chat">
-            <span id="nombreChat"></span>
-            <button class="cerrar" onclick="cerrarChat()">✕</button>
-        </div>
-        <div class="cuerpo-chat" id="cuerpoChat"></div>
-        <div class="caja-texto">
-            <input type="text" id="entradaTexto" placeholder="Escribe algo..." onkeypress="siEnter(event)">
-            <button onclick="enviarMensaje()">Enviar</button>
-        </div>
-    </div>
+    <!-- SECCIÓN DE CHAT (se carga aquí) -->
+    <div id="seccionChat" class="seccion-chat"></div>
+
 
     <script>
         // DATOS DE CADA CHICA
@@ -100,7 +94,8 @@
             midori: {
                 nombre: "Midori 🩷",
                 bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre.",
-                fotos: [
+                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/ffb3d9?text=MIDORI",
+                galeria: [
                     "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=1",
                     "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=2",
                     "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=3"
@@ -115,7 +110,8 @@
             aylin: {
                 nombre: "Aylin 🌸",
                 bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
-                fotos: [
+                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/ffd9b3?text=AYLIN",
+                galeria: [
                     "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=1",
                     "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=2",
                     "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=3"
@@ -130,7 +126,8 @@
             valeria: {
                 nombre: "Valeria 💜",
                 bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
-                fotos: [
+                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/b3b3ff?text=VALERIA",
+                galeria: [
                     "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=1",
                     "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=2",
                     "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=3"
@@ -145,7 +142,8 @@
             hisame: {
                 nombre: "Hisame ⚫⚪",
                 bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
-                fotos: [
+                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/cccccc?text=HISAME",
+                galeria: [
                     "https://via.placeholder.com/200x200/1a233a/cccccc?text=1",
                     "https://via.placeholder.com/200x200/1a233a/cccccc?text=2",
                     "https://via.placeholder.com/200x200/1a233a/cccccc?text=3"
@@ -161,44 +159,67 @@
 
         let chicaActual = "";
 
-        // ABRIR PERFIL
-        function abrirPerfil(id){
+        // IR A PERFIL — CAMBIA DE SECCIÓN
+        function irAPerfil(id){
             chicaActual = id;
             const chica = datosChicas[id];
-            document.getElementById("nombrePerfil").innerText = chica.nombre;
-            document.getElementById("bioPerfil").innerText = chica.bio;
             
-            // CARGAR FOTOS
-            const galeria = document.getElementById("galeriaPerfil");
-            galeria.innerHTML = "";
-            chica.fotos.forEach(foto => {
-                const img = document.createElement("div");
-                img.className = "galeria-foto";
-                img.style.backgroundImage = `url('${foto}')`;
-                galeria.appendChild(img);
-            });
+            // OCULTAR PRINCIPAL Y CHAT
+            document.getElementById("pantallaPrincipal").style.display = "none";
+            document.getElementById("seccionChat").style.display = "none";
 
-            document.getElementById("ventanaPerfil").style.display = "flex";
+            // CARGAR PERFIL
+            const perfil = document.getElementById("seccionPerfil");
+            perfil.innerHTML = `
+                <button class="btn-volver" onclick="volverAInicio()">← Volver atrás</button>
+                <div class="perfil-foto-principal" style="background-image:url('${chica.fotoPrincipal}')"></div>
+                <h2 class="perfil-nombre">${chica.nombre}</h2>
+                <p class="biografia">${chica.bio}</p>
+                <div class="galeria">
+                    ${chica.galeria.map(foto => `<div class="galeria-foto" style="background-image:url('${foto}')"></div>`).join("")}
+                </div>
+                <button class="boton btn-hablar" onclick="irAChat()">💬 Háblame</button>
+            `;
+            perfil.style.display = "block";
+            window.scrollTo(0,0);
         }
 
-        function cerrarPerfil(){
-            document.getElementById("ventanaPerfil").style.display = "none";
-        }
-
-        // INICIAR CHAT DESDE PERFIL
-        function iniciarChat(){
-            cerrarPerfil();
+        // IR A CHAT — CAMBIA DE SECCIÓN
+        function irAChat(){
             const chica = datosChicas[chicaActual];
-            document.getElementById("nombreChat").innerText = chica.nombre;
-            document.getElementById("cuerpoChat").innerHTML = "";
+            
+            // OCULTAR PERFIL
+            document.getElementById("seccionPerfil").style.display = "none";
+
+            // CARGAR CHAT
+            const chat = document.getElementById("seccionChat");
+            chat.innerHTML = `
+                <div class="chat-cabecera">
+                    <button class="btn-volver" onclick="irAPerfil('${chicaActual}')">← Volver</button>
+                    <h3>${chica.nombre}</h3>
+                </div>
+                <div class="chat-cuerpo" id="cuerpoChat"></div>
+                <div class="chat-caja">
+                    <input type="text" class="chat-input" id="entradaTexto" placeholder="Escribe algo..." onkeypress="siEnter(event)">
+                    <button class="chat-btn" onclick="enviarMensaje()">Enviar</button>
+                </div>
+            `;
+            chat.style.display = "block";
+
+            // MENSAJE DE BIENVENIDA
             agregarMensaje(chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)], "ia");
-            document.getElementById("ventanaChat").style.display = "flex";
+            window.scrollTo(0,0);
         }
 
-        function cerrarChat(){
-            document.getElementById("ventanaChat").style.display = "none";
+        // VOLVER AL INICIO
+        function volverAInicio(){
+            document.getElementById("seccionPerfil").style.display = "none";
+            document.getElementById("seccionChat").style.display = "none";
+            document.getElementById("pantallaPrincipal").style.display = "block";
+            window.scrollTo(0,0);
         }
 
+        // FUNCIONES DE CHAT
         function agregarMensaje(texto, quien){
             const div = document.createElement("div");
             div.className = `mensaje mensaje-${quien}`;
@@ -219,7 +240,6 @@
             agregarMensaje(texto, "usuario");
             input.value = "";
 
-            // RESPUESTA ALEATORIA DE SU LISTA
             const chica = datosChicas[chicaActual];
             setTimeout(() => {
                 const respuesta = chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)];
