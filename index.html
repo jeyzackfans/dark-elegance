@@ -9,21 +9,17 @@
         body{background:#0a0f1f;color:#fff;padding:40px 20px;transition: all 0.3s ease}
         .contenedor{max-width:1200px;margin:0 auto;text-align:center}
 
-        /* TÍTULOS - MÁS GRANDES Y DESTACADOS */
         h1{font-size:72px;letter-spacing:12px;margin-bottom:10px;font-weight:700;color:#e0e7ff;text-shadow:0 0 20px rgba(96,123,255,0.4)}
         .subtitulo{font-size:22px;color:#b8b8b8;margin-bottom:30px;letter-spacing:2px}
         .etiqueta-edad{display:inline-block;background:#1a233a;border:1px solid #304067;padding:8px 16px;border-radius:20px;color:#94a8d0;margin-bottom:50px}
 
-        /* CARRUSEL DE FOTOS - SE MUEVE SOLO */
         .carrusel-contenedor{width:100%;height:220px;overflow:hidden;border-radius:12px;margin-bottom:60px;border:1px solid #253050;background:#12182b}
         .carrusel-pista{display:flex;width:calc(200px * 12);animation: desplazar 25s linear infinite}
         .carrusel-foto{width:200px;height:220px;background-size:cover;background-position:center;flex-shrink:0;border-right:1px solid #1a233a}
         @keyframes desplazar{0%{transform:translateX(0)}100%{transform:translateX(-2400px)}}
 
-        /* CATEGORÍAS */
         .categoria-titulo{font-size:26px;margin:50px 0 20px;color:#94a8d0;letter-spacing:3px;border-bottom:1px solid #253050;padding-bottom:10px;display:inline-block}
 
-        /* TARJETAS */
         .fila-chicas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-bottom:40px}
         @media(max-width:900px){.fila-chicas{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:500px){.fila-chicas{grid-template-columns:1fr}}
@@ -34,20 +30,18 @@
         .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.2s;font-size:16px}
         .boton:hover{background:#354475}
 
-        /* SECCIÓN DE PERFIL */
         .seccion-perfil{display:none;max-width:800px;margin:0 auto;text-align:center}
         .btn-volver{background:transparent;border:none;color:#94a8d0;font-size:16px;cursor:pointer;margin-bottom:30px;display:inline-flex;align-items:center;gap:8px}
         .btn-volver:hover{color:#fff}
-        .perfil-foto-principal{width:300px;height:300px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
+        .perfil-foto-principal{width:300px;height:380px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
         .perfil-nombre{font-size:32px;margin-bottom:20px;letter-spacing:4px}
         .biografia{font-size:16px;line-height:1.8;color:#ccc;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
-        .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:40px}
-        .galeria-foto{width:100%;aspect-ratio:1/1;background:#1a233a;border-radius:8px;cursor:pointer;transition:.2s}
+        .galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:40px}
+        .galeria-foto{width:100%;aspect-ratio:3/4;background:#1a233a;border-radius:8px;cursor:pointer;transition:.2s;background-size:cover;background-position:center}
         .galeria-foto:hover{transform:scale(1.05)}
         .btn-hablar{background:#405899;padding:14px 30px;font-size:18px;border-radius:8px}
         .btn-hablar:hover{background:#5068b9}
 
-        /* SECCIÓN DE CHAT */
         .seccion-chat{display:none;max-width:500px;margin:0 auto}
         .chat-cabecera{display:flex;align-items:center;gap:15px;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #253050}
         .chat-cuerpo{height:450px;background:#12182b;border-radius:12px;padding:20px;overflow-y:auto;margin-bottom:15px}
@@ -61,52 +55,30 @@
 </head>
 <body>
 
-    <!-- PANTALLA PRINCIPAL -->
     <div class="contenedor" id="pantallaPrincipal">
         <h1>DARK ELEGANCE</h1>
         <p class="subtitulo">Tu novia virtual al alcance de tus manos</p>
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
 
-        <!-- CARRUSEL DE FOTOS QUE SE MUEVE SOLO -->
         <div class="carrusel-contenedor">
             <div class="carrusel-pista">
-                <!-- FOTOS DE MIDORI -->
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI3')"></div>
-                <!-- FOTOS DE AYLIN -->
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN3')"></div>
-                <!-- FOTOS DE VALERIA -->
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA3')"></div>
-                <!-- FOTOS DE HISAME -->
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME3')"></div>
-                <!-- REPETIMOS PARA QUE EL EFECTO SEA CONTINUO -->
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI3')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN3')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA3')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME1')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME2')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME3')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/UKkQkUn.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/bDCxw0Z.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/vG7ukoE.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/lS6Zlyl.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/UKkQkUn.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/bDCxw0Z.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/vG7ukoE.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/lS6Zlyl.jpeg')"></div>
             </div>
         </div>
 
-        <!-- CATEGORÍA: DULCES Y CARIÑOSAS -->
         <h2 class="categoria-titulo">✨ Dulces y Cariñosas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/ffb3d9?text=MIDORI')"></div>
+                <div class="foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
                 <h3 class="nombre">MIDORI</h3>
                 <button class="boton" onclick="irAPerfil('midori')">💬 Conócela</button>
             </div>
@@ -117,7 +89,6 @@
             </div>
         </div>
 
-        <!-- CATEGORÍA: MISTERIOSAS Y PROFUNDAS -->
         <h2 class="categoria-titulo">🌙 Misteriosas y Profundas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
@@ -133,24 +104,20 @@
         </div>
     </div>
 
-    <!-- SECCIÓN DE PERFIL -->
     <div id="seccionPerfil" class="seccion-perfil"></div>
-
-    <!-- SECCIÓN DE CHAT -->
     <div id="seccionChat" class="seccion-chat"></div>
 
-
     <script>
-        // DATOS DE CADA CHICA
         const datosChicas = {
             midori: {
                 nombre: "Midori 🩷",
                 bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre.",
-                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/ffb3d9?text=MIDORI",
+                fotoPrincipal: "https://i.imgur.com/un4cbWb.jpeg",
                 galeria: [
-                    "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=1",
-                    "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=2",
-                    "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=3"
+                    "https://i.imgur.com/UKkQkUn.jpeg",
+                    "https://i.imgur.com/bDCxw0Z.jpeg",
+                    "https://i.imgur.com/vG7ukoE.jpeg",
+                    "https://i.imgur.com/lS6Zlyl.jpeg"
                 ],
                 respuestas: [
                     "Me encanta hablar contigo 🩷",
@@ -162,11 +129,11 @@
             aylin: {
                 nombre: "Aylin 🌸",
                 bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
-                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/ffd9b3?text=AYLIN",
+                fotoPrincipal: "https://via.placeholder.com/300x380/1a233a/ffd9b3?text=AYLIN",
                 galeria: [
-                    "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=1",
-                    "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=2",
-                    "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=3"
+                    "https://via.placeholder.com/300x400/1a233a/ffd9b3?text=1",
+                    "https://via.placeholder.com/300x400/1a233a/ffd9b3?text=2",
+                    "https://via.placeholder.com/300x400/1a233a/ffd9b3?text=3"
                 ],
                 respuestas: [
                     "Eres muy lindo/a 🌸",
@@ -178,11 +145,11 @@
             valeria: {
                 nombre: "Valeria 💜",
                 bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
-                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/b3b3ff?text=VALERIA",
+                fotoPrincipal: "https://via.placeholder.com/300x380/1a233a/b3b3ff?text=VALERIA",
                 galeria: [
-                    "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=1",
-                    "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=2",
-                    "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=3"
+                    "https://via.placeholder.com/300x400/1a233a/b3b3ff?text=1",
+                    "https://via.placeholder.com/300x400/1a233a/b3b3ff?text=2",
+                    "https://via.placeholder.com/300x400/1a233a/b3b3ff?text=3"
                 ],
                 respuestas: [
                     "Tú eres especial, lo sé 💜",
@@ -194,11 +161,11 @@
             hisame: {
                 nombre: "Hisame ⚫⚪",
                 bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
-                fotoPrincipal: "https://via.placeholder.com/300x300/1a233a/cccccc?text=HISAME",
+                fotoPrincipal: "https://via.placeholder.com/300x380/1a233a/cccccc?text=HISAME",
                 galeria: [
-                    "https://via.placeholder.com/200x200/1a233a/cccccc?text=1",
-                    "https://via.placeholder.com/200x200/1a233a/cccccc?text=2",
-                    "https://via.placeholder.com/200x200/1a233a/cccccc?text=3"
+                    "https://via.placeholder.com/300x400/1a233a/cccccc?text=1",
+                    "https://via.placeholder.com/300x400/1a233a/cccccc?text=2",
+                    "https://via.placeholder.com/300x400/1a233a/cccccc?text=3"
                 ],
                 respuestas: [
                     "No hace falta hablar mucho ⚫",
@@ -211,11 +178,9 @@
 
         let chicaActual = "";
 
-        // IR A PERFIL
         function irAPerfil(id){
             chicaActual = id;
             const chica = datosChicas[id];
-            
             document.getElementById("pantallaPrincipal").style.display = "none";
             document.getElementById("seccionChat").style.display = "none";
 
@@ -234,10 +199,8 @@
             window.scrollTo(0,0);
         }
 
-        // IR A CHAT
         function irAChat(){
             const chica = datosChicas[chicaActual];
-            
             document.getElementById("seccionPerfil").style.display = "none";
 
             const chat = document.getElementById("seccionChat");
@@ -258,7 +221,6 @@
             window.scrollTo(0,0);
         }
 
-        // VOLVER AL INICIO
         function volverAInicio(){
             document.getElementById("seccionPerfil").style.display = "none";
             document.getElementById("seccionChat").style.display = "none";
@@ -266,7 +228,6 @@
             window.scrollTo(0,0);
         }
 
-        // FUNCIONES DE CHAT
         function agregarMensaje(texto, quien){
             const div = document.createElement("div");
             div.className = `mensaje mensaje-${quien}`;
