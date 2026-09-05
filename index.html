@@ -8,17 +8,27 @@
         *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
         body{background:#0a0f1f;color:#fff;padding:40px 20px;transition: all 0.3s ease}
         .contenedor{max-width:1200px;margin:0 auto;text-align:center}
-        h1{font-size:48px;letter-spacing:8px;margin-bottom:10px;font-weight:300}
-        .subtitulo{color:#b8b8b8;margin-bottom:30px;letter-spacing:2px}
+
+        /* TÍTULOS - MÁS GRANDES Y DESTACADOS */
+        h1{font-size:72px;letter-spacing:12px;margin-bottom:10px;font-weight:700;color:#e0e7ff;text-shadow:0 0 20px rgba(96,123,255,0.4)}
+        .subtitulo{font-size:22px;color:#b8b8b8;margin-bottom:30px;letter-spacing:2px}
         .etiqueta-edad{display:inline-block;background:#1a233a;border:1px solid #304067;padding:8px 16px;border-radius:20px;color:#94a8d0;margin-bottom:50px}
 
-        /* PANTALLA PRINCIPAL */
-        #pantallaPrincipal{display:block}
-        .fila-chicas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+        /* CARRUSEL DE FOTOS - SE MUEVE SOLO */
+        .carrusel-contenedor{width:100%;height:220px;overflow:hidden;border-radius:12px;margin-bottom:60px;border:1px solid #253050;background:#12182b}
+        .carrusel-pista{display:flex;width:calc(200px * 12);animation: desplazar 25s linear infinite}
+        .carrusel-foto{width:200px;height:220px;background-size:cover;background-position:center;flex-shrink:0;border-right:1px solid #1a233a}
+        @keyframes desplazar{0%{transform:translateX(0)}100%{transform:translateX(-2400px)}}
+
+        /* CATEGORÍAS */
+        .categoria-titulo{font-size:26px;margin:50px 0 20px;color:#94a8d0;letter-spacing:3px;border-bottom:1px solid #253050;padding-bottom:10px;display:inline-block}
+
+        /* TARJETAS */
+        .fila-chicas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-bottom:40px}
         @media(max-width:900px){.fila-chicas{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:500px){.fila-chicas{grid-template-columns:1fr}}
         .tarjeta{background:#12182b;border:1px solid #253050;border-radius:12px;padding:20px;transition:.3s;cursor:pointer}
-        .tarjeta:hover{transform:translateY(-8px);border-color:#405899;box-shadow:0 10px 25px rgba(64,88,153,.2)}
+        .tarjeta:hover{transform:translateY(-8px);border-color:#405899;box-shadow:0 10px 25px rgba(64,88,153,.3)}
         .foto{width:100%;height:280px;background:#1a233a;border-radius:8px;margin-bottom:20px;background-size:cover;background-position:center}
         .nombre{font-size:20px;letter-spacing:3px;margin-bottom:10px}
         .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.2s;font-size:16px}
@@ -54,37 +64,79 @@
     <!-- PANTALLA PRINCIPAL -->
     <div class="contenedor" id="pantallaPrincipal">
         <h1>DARK ELEGANCE</h1>
-        <p class="subtitulo">Virtual Companions</p>
+        <p class="subtitulo">Tu novia virtual al alcance de tus manos</p>
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
-        <h2>Elige tu compañía</h2>
+
+        <!-- CARRUSEL DE FOTOS QUE SE MUEVE SOLO -->
+        <div class="carrusel-contenedor">
+            <div class="carrusel-pista">
+                <!-- FOTOS DE MIDORI -->
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI3')"></div>
+                <!-- FOTOS DE AYLIN -->
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN3')"></div>
+                <!-- FOTOS DE VALERIA -->
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA3')"></div>
+                <!-- FOTOS DE HISAME -->
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME3')"></div>
+                <!-- REPETIMOS PARA QUE EL EFECTO SEA CONTINUO -->
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffb3d9?text=MIDORI3')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/ffd9b3?text=AYLIN3')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/b3b3ff?text=VALERIA3')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME1')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME2')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://via.placeholder.com/200x220/1a233a/cccccc?text=HISAME3')"></div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA: DULCES Y CARIÑOSAS -->
+        <h2 class="categoria-titulo">✨ Dulces y Cariñosas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=MIDORI')"></div>
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/ffb3d9?text=MIDORI')"></div>
                 <h3 class="nombre">MIDORI</h3>
                 <button class="boton" onclick="irAPerfil('midori')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=AYLIN')"></div>
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/ffd9b3?text=AYLIN')"></div>
                 <h3 class="nombre">AYLIN</h3>
                 <button class="boton" onclick="irAPerfil('aylin')">💬 Conócela</button>
             </div>
+        </div>
+
+        <!-- CATEGORÍA: MISTERIOSAS Y PROFUNDAS -->
+        <h2 class="categoria-titulo">🌙 Misteriosas y Profundas</h2>
+        <div class="fila-chicas">
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=VALERIA')"></div>
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/b3b3ff?text=VALERIA')"></div>
                 <h3 class="nombre">VALERIA</h3>
                 <button class="boton" onclick="irAPerfil('valeria')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=HISAME')"></div>
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/cccccc?text=HISAME')"></div>
                 <h3 class="nombre">HISAME</h3>
                 <button class="boton" onclick="irAPerfil('hisame')">💬 Conócela</button>
             </div>
         </div>
     </div>
 
-    <!-- SECCIÓN DE PERFIL (se carga aquí) -->
+    <!-- SECCIÓN DE PERFIL -->
     <div id="seccionPerfil" class="seccion-perfil"></div>
 
-    <!-- SECCIÓN DE CHAT (se carga aquí) -->
+    <!-- SECCIÓN DE CHAT -->
     <div id="seccionChat" class="seccion-chat"></div>
 
 
@@ -159,16 +211,14 @@
 
         let chicaActual = "";
 
-        // IR A PERFIL — CAMBIA DE SECCIÓN
+        // IR A PERFIL
         function irAPerfil(id){
             chicaActual = id;
             const chica = datosChicas[id];
             
-            // OCULTAR PRINCIPAL Y CHAT
             document.getElementById("pantallaPrincipal").style.display = "none";
             document.getElementById("seccionChat").style.display = "none";
 
-            // CARGAR PERFIL
             const perfil = document.getElementById("seccionPerfil");
             perfil.innerHTML = `
                 <button class="btn-volver" onclick="volverAInicio()">← Volver atrás</button>
@@ -184,14 +234,12 @@
             window.scrollTo(0,0);
         }
 
-        // IR A CHAT — CAMBIA DE SECCIÓN
+        // IR A CHAT
         function irAChat(){
             const chica = datosChicas[chicaActual];
             
-            // OCULTAR PERFIL
             document.getElementById("seccionPerfil").style.display = "none";
 
-            // CARGAR CHAT
             const chat = document.getElementById("seccionChat");
             chat.innerHTML = `
                 <div class="chat-cabecera">
@@ -206,7 +254,6 @@
             `;
             chat.style.display = "block";
 
-            // MENSAJE DE BIENVENIDA
             agregarMensaje(chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)], "ia");
             window.scrollTo(0,0);
         }
