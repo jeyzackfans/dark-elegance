@@ -18,11 +18,21 @@
         .tarjeta:hover{transform:translateY(-8px);border-color:#405899;box-shadow:0 10px 25px rgba(64,88,153,.2)}
         .foto{width:100%;height:280px;background:#1a233a;border-radius:8px;margin-bottom:20px;background-size:cover;background-position:center}
         .nombre{font-size:20px;letter-spacing:3px;margin-bottom:10px}
-        .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer}
+        .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.2s}
         .boton:hover{background:#354475}
+
+        /* Ventana de perfil */
+        .ventana-perfil{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:500px;background:#12182b;border:1px solid #253050;border-radius:12px;padding:25px;display:none;flex-direction:column;gap:15px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:1000}
+        .cerrar{position:absolute;top:10px;right:15px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+        .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+        .galeria-foto{width:100%;aspect-ratio:1/1;background:#1a233a;border-radius:6px}
+        .biografia{font-size:14px;line-height:1.6;color:#ccc}
+        .btn-hablar{background:#405899;font-size:16px;padding:12px}
+        .btn-hablar:hover{background:#5068b9}
+
+        /* Ventana de chat */
         .ventana-chat{position:fixed;bottom:20px;right:20px;width:380px;height:500px;background:#12182b;border:1px solid #253050;border-radius:12px;display:none;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:999}
         .cabecera-chat{padding:12px;background:#1a233a;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center}
-        .cerrar{background:none;border:none;color:#fff;font-size:18px;cursor:pointer}
         .cuerpo-chat{flex:1;padding:15px;overflow-y:auto;font-size:14px;line-height:1.5}
         .mensaje{margin-bottom:12px;padding:8px 12px;border-radius:18px;max-width:80%}
         .mensaje-usuario{background:#253050;margin-left:auto}
@@ -39,29 +49,39 @@
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
         <h2>Elige tu compañía</h2>
         <div class="fila-chicas">
-            <div class="tarjeta" onclick="abrirChat('midori')">
-                <div class="foto"></div>
+            <div class="tarjeta">
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=MIDORI')"></div>
                 <h3 class="nombre">MIDORI</h3>
-                <button class="boton">💬 Conocerla</button>
+                <button class="boton" onclick="abrirPerfil('midori')">💬 Conócela</button>
             </div>
-            <div class="tarjeta" onclick="abrirChat('aylin')">
-                <div class="foto"></div>
+            <div class="tarjeta">
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=AYLIN')"></div>
                 <h3 class="nombre">AYLIN</h3>
-                <button class="boton">💬 Conocerla</button>
+                <button class="boton" onclick="abrirPerfil('aylin')">💬 Conócela</button>
             </div>
-            <div class="tarjeta" onclick="abrirChat('valeria')">
-                <div class="foto"></div>
+            <div class="tarjeta">
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=VALERIA')"></div>
                 <h3 class="nombre">VALERIA</h3>
-                <button class="boton">💬 Conocerla</button>
+                <button class="boton" onclick="abrirPerfil('valeria')">💬 Conócela</button>
             </div>
-            <div class="tarjeta" onclick="abrirChat('hisame')">
-                <div class="foto"></div>
+            <div class="tarjeta">
+                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/94a8d0?text=HISAME')"></div>
                 <h3 class="nombre">HISAME</h3>
-                <button class="boton">💬 Conocerla</button>
+                <button class="boton" onclick="abrirPerfil('hisame')">💬 Conócela</button>
             </div>
         </div>
     </div>
 
+    <!-- VENTANA DE PERFIL -->
+    <div class="ventana-perfil" id="ventanaPerfil">
+        <button class="cerrar" onclick="cerrarPerfil()">✕</button>
+        <h2 id="nombrePerfil"></h2>
+        <div class="galeria" id="galeriaPerfil"></div>
+        <p class="biografia" id="bioPerfil"></p>
+        <button class="boton btn-hablar" id="btnHablar" onclick="iniciarChat()">💬 Háblame</button>
+    </div>
+
+    <!-- VENTANA DE CHAT -->
     <div class="ventana-chat" id="ventanaChat">
         <div class="cabecera-chat">
             <span id="nombreChat"></span>
@@ -75,18 +95,137 @@
     </div>
 
     <script>
-        const personalidades = {
-            midori:{nombre:"Midori 🩷",presentacion:"¡Hola! Soy Midori ✨ ¿Qué quieres platicar?",respuestas:["Me encanta hablar contigo 🩷","Dime más ✨","Siempre estoy aquí 💫"]},
-            aylin:{nombre:"Aylin 🌸",presentacion:"¡Hola cariño! Soy Aylin 🌸 ¿Cómo estás?",respuestas:["Eres muy lindo/a 🌸","Me gustas mucho ✨","Cuéntame todo 🥰"]},
-            valeria:{nombre:"Valeria 💜",presentacion:"Hola... Soy Valeria 💜 ¿Qué te trae por aquí?",respuestas:["Tú eres especial 💜","Me gusta la gente profunda","Soy sincera contigo"]},
-            hisame:{nombre:"Hisame ⚫⚪",presentacion:"... Soy Hisame.",respuestas:["No hace falta hablar mucho ⚫","Te entiendo sin palabras ✨"]}
+        // DATOS DE CADA CHICA
+        const datosChicas = {
+            midori: {
+                nombre: "Midori 🩷",
+                bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre.",
+                fotos: [
+                    "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=1",
+                    "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=2",
+                    "https://via.placeholder.com/200x200/1a233a/ffb3d9?text=3"
+                ],
+                respuestas: [
+                    "Me encanta hablar contigo 🩷",
+                    "Dime más, te escucho atentamente ✨",
+                    "Siempre estoy aquí para ti 💫",
+                    "Qué lindo lo que dices... 🥺"
+                ]
+            },
+            aylin: {
+                nombre: "Aylin 🌸",
+                bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
+                fotos: [
+                    "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=1",
+                    "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=2",
+                    "https://via.placeholder.com/200x200/1a233a/ffd9b3?text=3"
+                ],
+                respuestas: [
+                    "Eres muy lindo/a 🌸",
+                    "Me gustas mucho cuando hablas así ✨",
+                    "Cuéntame todo, no tengas pena 🥺",
+                    "Me siento muy bien contigo 💖"
+                ]
+            },
+            valeria: {
+                nombre: "Valeria 💜",
+                bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
+                fotos: [
+                    "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=1",
+                    "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=2",
+                    "https://via.placeholder.com/200x200/1a233a/b3b3ff?text=3"
+                ],
+                respuestas: [
+                    "Tú eres especial, lo sé 💜",
+                    "Me gusta la gente que siente de verdad 🌙",
+                    "Te entiendo sin que me digas nada ✨",
+                    "Juntos podemos ir muy lejos 🖤"
+                ]
+            },
+            hisame: {
+                nombre: "Hisame ⚫⚪",
+                bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
+                fotos: [
+                    "https://via.placeholder.com/200x200/1a233a/cccccc?text=1",
+                    "https://via.placeholder.com/200x200/1a233a/cccccc?text=2",
+                    "https://via.placeholder.com/200x200/1a233a/cccccc?text=3"
+                ],
+                respuestas: [
+                    "No hace falta hablar mucho ⚫",
+                    "Te entiendo sin palabras ✨",
+                    "Lo que digo, lo cumplo 🖤",
+                    "Eres diferente a los demás..."
+                ]
+            }
         };
-        let chicaActual="";
-        function abrirChat(n){chicaActual=n;document.getElementById("nombreChat").innerText=personalidades[n].nombre;document.getElementById("cuerpoChat").innerHTML="";agregar(personalidades[n].presentacion,"ia");document.getElementById("ventanaChat").style.display="flex";}
-        function cerrarChat(){document.getElementById("ventanaChat").style.display="none";}
-        function agregar(t,q){const d=document.createElement("div");d.style="margin:8px 0;padding:8px 12px;border-radius:18px;max-width:80%;"+(q=="usuario"?"background:#253050;margin-left:auto":"background:#1a233a;margin-right:auto");d.innerText=t;document.getElementById("cuerpoChat").appendChild(d);document.getElementById("cuerpoChat").scrollTop=99999;}
-        function siEnter(e){if(e.key=="Enter")enviarMensaje();}
-        function enviarMensaje(){const t=document.getElementById("entradaTexto").value.trim();if(!t)return;agregar(t,"usuario");document.getElementById("entradaTexto").value="";const r=personalidades[chicaActual].respuestas[Math.floor(Math.random()*personalidades[chicaActual].respuestas.length)];setTimeout(()=>agregar(r,"ia"),700+Math.random()*500);}
+
+        let chicaActual = "";
+
+        // ABRIR PERFIL
+        function abrirPerfil(id){
+            chicaActual = id;
+            const chica = datosChicas[id];
+            document.getElementById("nombrePerfil").innerText = chica.nombre;
+            document.getElementById("bioPerfil").innerText = chica.bio;
+            
+            // CARGAR FOTOS
+            const galeria = document.getElementById("galeriaPerfil");
+            galeria.innerHTML = "";
+            chica.fotos.forEach(foto => {
+                const img = document.createElement("div");
+                img.className = "galeria-foto";
+                img.style.backgroundImage = `url('${foto}')`;
+                galeria.appendChild(img);
+            });
+
+            document.getElementById("ventanaPerfil").style.display = "flex";
+        }
+
+        function cerrarPerfil(){
+            document.getElementById("ventanaPerfil").style.display = "none";
+        }
+
+        // INICIAR CHAT DESDE PERFIL
+        function iniciarChat(){
+            cerrarPerfil();
+            const chica = datosChicas[chicaActual];
+            document.getElementById("nombreChat").innerText = chica.nombre;
+            document.getElementById("cuerpoChat").innerHTML = "";
+            agregarMensaje(chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)], "ia");
+            document.getElementById("ventanaChat").style.display = "flex";
+        }
+
+        function cerrarChat(){
+            document.getElementById("ventanaChat").style.display = "none";
+        }
+
+        function agregarMensaje(texto, quien){
+            const div = document.createElement("div");
+            div.className = `mensaje mensaje-${quien}`;
+            div.innerText = texto;
+            document.getElementById("cuerpoChat").appendChild(div);
+            document.getElementById("cuerpoChat").scrollTop = 99999;
+        }
+
+        function siEnter(e){
+            if(e.key === "Enter") enviarMensaje();
+        }
+
+        function enviarMensaje(){
+            const input = document.getElementById("entradaTexto");
+            const texto = input.value.trim();
+            if(!texto) return;
+
+            agregarMensaje(texto, "usuario");
+            input.value = "";
+
+            // RESPUESTA ALEATORIA DE SU LISTA
+            const chica = datosChicas[chicaActual];
+            setTimeout(() => {
+                const respuesta = chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)];
+                agregarMensaje(respuesta, "ia");
+            }, 700 + Math.random()*500);
+        }
     </script>
 </body>
 </html>
