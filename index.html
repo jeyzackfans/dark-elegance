@@ -4,3 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DARK ELEGANCE</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+        body{background:#0a0f1f;color:#fff;padding:40px 20px}
+        .contenedor{max-width:1200px;margin:0 auto;text-align:center}
+        h1{font-size:48px;letter-spacing:8px;margin-bottom:10px;font-weight:300}
+        .subtitulo{color:#b8b8b8;margin-bottom:30px;letter-spacing:2px}
+        .etiqueta-edad{display:inline-block;background:#1a233a;border:1px solid #304067;padding:8px 16px;border-radius:20px;color:#94a8d0;margin-bottom:50px}
+        .fila-chicas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+        @media(max-width:900px){.fila-chicas{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:500px){.fila-chicas{grid-template-columns:1fr}}
+        .tarjeta{background:#12182b;border:1px solid #253050;border-radius:12px;padding:20px;transition:.3s;cursor:pointer}
+        .tarjeta:hover{transform:translateY(-8px);border-color:#405899;box-shadow:0 10px 25px rgba(64,88,153,.2)}
+        .foto{width:100%;height:280px;background:#1a233a;border-radius:8px;margin-bottom:20px;background-size:cover;background-position:center}
+        .nombre{font-size:20px;letter-spacing:3px;margin-bottom:10px}
+        .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer}
+        .boton:hover{background:#354475}
+        .ventana-chat{position:fixed;bottom:20px;right:20px;width:380px;height:500px;background:#12182b;border:1px solid #253050;border-radius:12px;display:none;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:999}
+        .cabecera-chat{padding:12px;background:#1a233a;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center}
+        .cerrar{background:none;border:none;color:#fff;font-size:18px;cursor:pointer}
+        .cuerpo-chat{flex:1;padding:15px;overflow-y:auto;font-size:14px;line-height:1.5}
+        .mensaje{margin-bottom:12px;padding:8px 12px;border-radius:18px;max-width:80%}
+        .mensaje-usuario{background:#253050;margin-left:auto}
+        .mensaje-ia{background:#1a233a;margin-right:auto}
+        .caja-texto{display:flex;padding:10px;border-top:1px solid #253050}
+        .caja-texto input{flex:1;padding:10px;background:#0a0f1f;border:1px solid #253050;color:#fff;border-radius:20px;outline:none}
+        .caja-texto button{margin-left:8px;padding:10px 16px;background:#405899;color:#fff;border:none;border-radius:20px;cursor:pointer}
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>DARK ELEGANCE</h1>
+        <p class="subtitulo">Virtual Companions</p>
+        <div class="etiqueta-edad">18+ • Experiencia virtual</div>
+        <h2>Elige tu compañía</h2>
+        <div class="fila-chicas">
+            <div class="tarjeta" onclick="abrirChat('midori')">
+                <div class="foto"></div>
+                <h3 class="nombre">MIDORI</h3>
+                <button class="boton">💬 Conocerla</button>
+            </div>
+            <div class="tarjeta" onclick="abrirChat('aylin')">
+                <div class="foto"></div>
+                <h3 class="nombre">AYLIN</h3>
+                <button class="boton">💬 Conocerla</button>
+            </div>
+            <div class="tarjeta" onclick="abrirChat('valeria')">
+                <div class="foto"></div>
+                <h3 class="nombre">VALERIA</h3>
+                <button class="boton">💬 Conocerla</button>
+            </div>
+            <div class="tarjeta" onclick="abrirChat('hisame')">
+                <div class="foto"></div>
+                <h3 class="nombre">HISAME</h3>
+                <button class="boton">💬 Conocerla</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ventana-chat" id="ventanaChat">
+        <div class="cabecera-chat">
+            <span id="nombreChat"></span>
+            <button class="cerrar" onclick="cerrarChat()">✕</button>
+        </div>
+        <div class="cuerpo-chat" id="cuerpoChat"></div>
+        <div class="caja-texto">
+            <input type="text" id="entradaTexto" placeholder="Escribe algo..." onkeypress="siEnter(event)">
+            <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const personalidades = {
+            midori:{nombre:"Midori 🩷",presentacion:"¡Hola! Soy Midori ✨ ¿Qué quieres platicar?",respuestas:["Me encanta hablar contigo 🩷","Dime más ✨","Siempre estoy aquí 💫"]},
+            aylin:{nombre:"Aylin 🌸",presentacion:"¡Hola cariño! Soy Aylin 🌸 ¿Cómo estás?",respuestas:["Eres muy lindo/a 🌸","Me gustas mucho ✨","Cuéntame todo 🥰"]},
+            valeria:{nombre:"Valeria 💜",presentacion:"Hola... Soy Valeria 💜 ¿Qué te trae por aquí?",respuestas:["Tú eres especial 💜","Me gusta la gente profunda","Soy sincera contigo"]},
+            hisame:{nombre:"Hisame ⚫⚪",presentacion:"... Soy Hisame.",respuestas:["No hace falta hablar mucho ⚫","Te entiendo sin palabras ✨"]}
+        };
+        let chicaActual="";
+        function abrirChat(n){chicaActual=n;document.getElementById("nombreChat").innerText=personalidades[n].nombre;document.getElementById("cuerpoChat").innerHTML="";agregar(personalidades[n].presentacion,"ia");document.getElementById("ventanaChat").style.display="flex";}
+        function cerrarChat(){document.getElementById("ventanaChat").style.display="none";}
+        function agregar(t,q){const d=document.createElement("div");d.style="margin:8px 0;padding:8px 12px;border-radius:18px;max-width:80%;"+(q=="usuario"?"background:#253050;margin-left:auto":"background:#1a233a;margin-right:auto");d.innerText=t;document.getElementById("cuerpoChat").appendChild(d);document.getElementById("cuerpoChat").scrollTop=99999;}
+        function siEnter(e){if(e.key=="Enter")enviarMensaje();}
+        function enviarMensaje(){const t=document.getElementById("entradaTexto").value.trim();if(!t)return;agregar(t,"usuario");document.getElementById("entradaTexto").value="";const r=personalidades[chicaActual].respuestas[Math.floor(Math.random()*personalidades[chicaActual].respuestas.length)];setTimeout(()=>agregar(r,"ia"),700+Math.random()*500);}
+    </script>
+</body>
+</html>
