@@ -5,282 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DARK ELEGANCE</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Segoe UI, sans-serif;
-        }
-        body {
-            background: #0a0f1f;
-            color: #fff;
-            padding: 40px 20px;
-        }
-        .contenedor {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        h1 {
-            font-size: 72px;
-            letter-spacing: 12px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: #e0e7ff;
-            text-shadow: 0 0 20px rgba(96,123,255,0.4);
-        }
-        .subtitulo {
-            font-size: 22px;
-            color: #b8b8b8;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
-        .etiqueta-edad {
-            display: inline-block;
-            background: #1a233a;
-            border: 1px solid #304067;
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: #94a8d0;
-            margin-bottom: 50px;
-        }
-        .carrusel-contenedor {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            border-radius: 12px;
-            margin-bottom: 60px;
-            border: 1px solid #253050;
-            background: #12182b;
-        }
-        .carrusel-pista {
-            display: flex;
-            width: calc(200px * 24);
-            animation: desplazar 35s linear infinite;
-        }
-        .carrusel-foto {
-            width: 200px;
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            flex-shrink: 0;
-            border-right: 1px solid #1a233a;
-        }
-        @keyframes desplazar {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-4800px); }
-        }
-        .categoria-titulo {
-            font-size: 26px;
-            margin: 50px 0 20px;
-            color: #94a8d0;
-            letter-spacing: 3px;
-            border-bottom: 1px solid #253050;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        .fila-chicas {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        @media(max-width:900px) {
-            .fila-chicas { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media(max-width:500px) {
-            .fila-chicas { grid-template-columns: 1fr; }
-        }
-        .tarjeta {
-            background: #12182b;
-            border: 1px solid #253050;
-            border-radius: 12px;
-            padding: 20px;
-            transition: .3s;
-            cursor: pointer;
-        }
-        .tarjeta:hover {
-            transform: translateY(-8px);
-            border-color: #405899;
-            box-shadow: 0 10px 25px rgba(64,88,153,.3);
-        }
-        .foto {
-            width: 100%;
-            height: 280px;
-            background: #1a233a;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            background-size: cover;
-            background-position: center;
-        }
-        .nombre {
-            font-size: 20px;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-        .boton {
-            padding: 10px 20px;
-            background: #253050;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: .2s;
-            font-size: 16px;
-        }
-        .boton:hover { background: #354475; }
-        .seccion-perfil {
-            display: none;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .btn-volver {
-            background: transparent;
-            border: none;
-            color: #94a8d0;
-            font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-volver:hover { color: #fff; }
-        .perfil-foto-principal {
-            width: 300px;
-            height: 380px;
-            background: #1a233a;
-            border-radius: 12px;
-            margin: 0 auto 25px;
-            background-size: cover;
-            background-position: center;
-        }
-        .perfil-nombre {
-            font-size: 32px;
-            margin-bottom: 15px;
-            letter-spacing: 4px;
-        }
-        .video-presentacion {
-            width: 100%;
-            max-width: 400px;
-            height: 225px;
-            border-radius: 12px;
-            margin: 0 auto 25px;
-            overflow: hidden;
-            border: 1px solid #253050;
-            background: #000;
-        }
-        .video-presentacion iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .biografia {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #ccc;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        .galeria-foto {
-            width: 100%;
-            aspect-ratio: 3/4;
-            background: #1a233a;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: .2s;
-            background-size: cover;
-            background-position: center;
-        }
-        .galeria-foto:hover { transform: scale(1.05); }
-        .btn-hablar {
-            background: #405899;
-            padding: 14px 30px;
-            font-size: 18px;
-            border-radius: 8px;
-        }
-        .btn-hablar:hover { background: #5068b9; }
-        .seccion-chat {
-            display: none;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .chat-cabecera {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #253050;
-        }
-        .chat-cuerpo {
-            height: 450px;
-            background: #12182b;
-            border-radius: 12px;
-            padding: 20px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-        }
-        .mensaje {
-            margin-bottom: 12px;
-            padding: 8px 12px;
-            border-radius: 18px;
-            max-width: 80%;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-        .mensaje-usuario {
-            background: #253050;
-            margin-left: auto;
-            text-align: right;
-        }
-        .mensaje-ia {
-            background: #1a233a;
-            margin-right: auto;
-            text-align: left;
-        }
-        .chat-caja {
-            display: flex;
-            gap: 10px;
-        }
-        .chat-input {
-            flex: 1;
-            padding: 12px 15px;
-            background: #12182b;
-            border: 1px solid #253050;
-            border-radius: 20px;
-            color: #fff;
-            outline: none;
-            font-size: 15px;
-        }
-        .chat-btn {
-            background: #405899;
-            border: none;
-            border-radius: 20px;
-            padding: 12px 20px;
-            color: #fff;
-            cursor: pointer;
-        }
-        .cargando {
-            font-style: italic;
-            color: #888;
-            opacity: 0.7;
-        }
-        .foto-enviada {
-            max-width: 220px;
-            border-radius: 10px;
-            margin: 8px 0 2px 0;
-            display: block;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Segoe UI, sans-serif; }
+        body { background: #0a0f1f; color: #fff; padding: 40px 20px; }
+        .contenedor { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 72px; letter-spacing: 12px; margin-bottom: 10px; font-weight: 700; color: #e0e7ff; text-shadow: 0 0 20px rgba(96, 165, 250, 0.4); }
+        .subtitulo { font-size: 22px; color: #b8b8b8; margin-bottom: 30px; letter-spacing: 2px; }
+        .etiqueta-edad { display: inline-block; background: #1a233a; border: 1px solid #30416a; padding: 8px 16px; border-radius: 20px; color: #94a8c8; margin-bottom: 50px; }
+        .carrusel-contenedor { width: 100%; height: 220px; overflow: hidden; border-radius: 12px; margin-bottom: 60px; border: 1px solid #253252; background: #12182b; }
+        .carrusel-pista { display: flex; width: calc(200px * 24); animation: desplazar 35s linear infinite; }
+        .carrusel-foto { width: 200px; height: 220px; background-size: cover; background-position: center; flex-shrink: 0; border-right: 1px solid #1a233a; }
+        @keyframes desplazar { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .titulo-categoria { font-size: 26px; margin: 50px 0 20px; color: #94a8c8; letter-spacing: 3px; border-bottom: 1px solid #253252; padding-bottom: 10px; display: inline-block; }
+        .fila-chicas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px; }
+        @media(max-width: 900px) { .fila-chicas { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 500px) { .fila-chicas { grid-template-columns: 1fr; } }
+        .tarjeta-chica { background: #12182b; border: 1px solid #253252; border-radius: 12px; padding: 20px; transition: .3s; cursor: pointer; }
+        .tarjeta-chica:hover { transform: translateY(-8px); border-color: #405899; box-shadow: 0 10px 25px rgba(64, 88, 153, 0.3); }
+        .foto-tarjeta { width: 100%; height: 280px; background: #1a233a; border-radius: 8px; margin-bottom: 20px; background-size: cover; background-position: center; }
+        .nombre-chica { font-size: 20px; letter-spacing: 3px; margin-bottom: 10px; }
+        .boton { padding: 10px 20px; background: #253252; color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: .2s; font-size: 16px; }
+        .boton:hover { background: #35487a; }
+        .seccion-perfil { display: none; max-width: 800px; margin: 0 auto; text-align: center; }
+        .boton-volver { background: transparent; border: none; color: #94a8c8; font-size: 16px; cursor: pointer; margin-bottom: 30px; display: inline-flex; align-items: center; gap: 8px; }
+        .boton-volver:hover { color: #fff; }
+        .foto-perfil-grande { width: 300px; height: 380px; background: #1a233a; border-radius: 12px; margin: 0 auto 25px; background-size: cover; background-position: center; }
+        .nombre-perfil { font-size: 32px; margin-bottom: 15px; letter-spacing: 4px; }
+        .biografia { font-size: 16px; line-height: 1.8; color: #ccc; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .galeria { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 40px; }
+        .foto-galeria { width: 100%; aspect-ratio: 3/4; background: #1a233a; border-radius: 8px; cursor: pointer; transition: .2s; background-size: cover; background-position: center; }
+        .foto-galeria:hover { transform: scale(1.05); }
+        .boton-hablar { background: #405899; padding: 14px 30px; font-size: 18px; border-radius: 8px; }
+        .boton-hablar:hover { background: #5068b0; }
+        .seccion-chat { display: none; max-width: 500px; margin: 0 auto; }
+        .cabecera-chat { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #253252; }
+        .cuerpo-chat { height: 450px; background: #12182b; border-radius: 12px; padding: 20px; overflow-y: auto; margin-bottom: 15px; }
+        .mensaje { margin-bottom: 12px; padding: 8px 12px; border-radius: 18px; max-width: 80%; font-size: 15px; line-height: 1.5; }
+        .mensaje-usuario { background: #253252; margin-left: auto; text-align: right; }
+        .mensaje-ia { background: #1a233a; margin-right: auto; text-align: left; }
+        .contenedor-entrada { display: flex; gap: 10px; }
+        .entrada-chat { flex: 1; padding: 12px 15px; background: #12182b; border: 1px solid #253252; border-radius: 20px; color: #fff; outline: none; font-size: 15px; }
+        .boton-enviar { background: #405899; border: none; border-radius: 20px; padding: 12px 20px; color: #fff; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -305,295 +69,145 @@
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/M1P4JOU.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/Z8j9ztO.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/7c4Pups.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/mBJEJIJ.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/mBJEJIj.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/3fktETt.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/qpqf2jm.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4tMKHXs.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SFIsIYU.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/EkmiCwJ.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/EkMiCwJ.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4Jz92cH.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
             </div>
         </div>
-        <h2 class="categoria-titulo">✨ Dulces y Cariñosas</h2>
+        <h2 class="titulo-categoria">✨ Dulces y Cariñosas</h2>
         <div class="fila-chicas">
-            <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
-                <h3 class="nombre">MIDORI</h3>
-                <button class="boton" onclick="irAPerfil('midori')">💬 Conócela</button>
-            </div>
-            <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
-                <h3 class="nombre">AYLIN MONTTANA</h3>
-                <button class="boton" onclick="irAPerfil('aylin')">💬 Conócela</button>
-            </div>
-        </div>
-        <h2 class="categoria-titulo">🌙 Misteriosas y Profundas</h2>
-        <div class="fila-chicas">
-            <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://i.imgur.com/H3t4GG2.jpeg')"></div>
-                <h3 class="nombre">VALERIA KUROBANE</h3>
-                <button class="boton" onclick="irAPerfil('valeria')">💬 Conócela</button>
-            </div>
-            <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
-                <h3 class="nombre">HISAME KUROBANE</h3>
-                <button class="boton" onclick="irAPerfil('hisame')">💬 Conócela</button>
+            <div class="tarjeta-chica" onclick="irAPerfil('midori')">
+                <div class="foto-tarjeta" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
+                <h3 class="nombre-chica">MIDORI</h3>
+                <button class="boton">💬 Conócela</button>
             </div>
         </div>
     </div>
+
     <div id="seccionPerfil" class="seccion-perfil"></div>
-    <div id="seccionChat" class="seccion-chat"></div>
 
     <script>
         const datosChicas = {
             midori: {
                 nombre: "Midori Monttana 🩷",
-                bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello.",
-                fotoPrincipal: "https://i.imgur.com/un4cbWb.jpeg",
+                biografia: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre. También me gusta que me consientan... soy traviesa, apasionada y sin límites. 🔥",
+                fotoPerfil: "https://i.imgur.com/un4cbWb.jpeg",
                 galeria: [
+                    // --- FOTOS ORIGINALES, IGUALES ---
                     "https://i.imgur.com/UKkQkUn.jpeg",
                     "https://i.imgur.com/bDCxw0Z.jpeg",
                     "https://i.imgur.com/vG7ukoE.jpeg",
-                    "https://i.imgur.com/lS6Zlyl.jpeg"
-                ],
-                personalidad: "Eres Midori Monttana. Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello. Hablas suave, coqueta, directa y sin tabúes. Siempre respondes con emojis como 🩷 🔥 😈 💋 ✨ para darle emoción. Si te piden una foto, di algo bonito y lindo. Responde corta, natural y con mucha picardía.",
-                respuestasBonitas: [
-                    "¡Claro mi amor, aquí tienes! 🩷",
-                    "Toma, solo para ti 😈",
-                    "¿Te gusta? 🩷✨",
-                    "Aquí me tienes, precioso 💋"
-                ],
-                historial: []
-            },
-            aylin: {
-                nombre: "Aylin Monttana 🌸",
-                bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello.",
-                fotoPrincipal: "https://i.imgur.com/rSnvhhV.jpeg",
-                videoId: "PSEL0mldFeY",
-                galeria: [
-                    "https://i.imgur.com/SlDMAN0.jpeg",
-                    "https://i.imgur.com/tvnRx4C.jpeg",
-                    "https://i.imgur.com/ynl1Zdn.jpeg",
-                    "https://i.imgur.com/Y5LjFb8.jpeg",
-                    "https://i.imgur.com/eq7XgzG.jpeg"
-                ],
-                personalidad: "Eres Aylin Monttana. Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello. Hablas suave, dulce, te dejas llevar pero sabes lo que quieres. Siempre respondes con emojis tiernos y atrevidos como 🌸 🥺 💜 😳 🔥 para darle emoción. Si te piden una foto, di algo bonito y tierno. Responde corta, natural y con ternura.",
-                respuestasBonitas: [
-                    "¡Por supuesto cariño, mira! 🌸",
-                    "Aquí estoy para ti 🥺💜",
-                    "¿Te agrado? 😳✨",
-                    "Toma, guárdala bien 🌸"
-                ],
-                historial: []
-            },
-            valeria: {
-                nombre: "Valeria Kurobane 💜",
-                bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena. Me gusta complacer a los que están dispuestos a pagar por ello, aunque no soy una chica fácil.",
-                fotoPrincipal: "https://i.imgur.com/H3t4GG2.jpeg",
-                videoId: "UAJblNGyfjs",
-                galeria: [
-                    "https://i.imgur.com/M1P4JOU.jpeg",
-                    "https://i.imgur.com/Z8j9ztO.jpeg",
-                    "https://i.imgur.com/7c4Pups.jpeg",
-                    "https://i.imgur.com/mBJEJIJ.jpeg",
-                    "https://i.imgur.com/3fktETt.jpeg"
-                ],
-                personalidad: "Eres Valeria Kurobane. Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena. Me gusta complacer a los que están dispuestos a pagar por ello, aunque no soy una chica fácil. Hablas con elegancia, eres reservada al principio pero intensa cuando confías. Siempre respondes con emojis misteriosos y seductores como 💜 🌙 🖤 ✨ 😏 para darle emoción. Si te piden una foto, di algo bonito y elegante. Responde corta, elegante y con intensidad.",
-                respuestasBonitas: [
-                    "Aquí me tienes, precioso 💜",
-                    "Mira bien... 🌙✨",
-                    "Solo para tus ojos 🖤😏",
-                    "¿Te gusta lo que ves? 💜"
-                ],
-                historial: []
-            },
-            hisame: {
-                nombre: "Hisame Kurobane ⚫⚪",
-                bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo. Me gusta complacer a los que están dispuestos a pagar por ello, aunque no soy una chica fácil.",
-                fotoPrincipal: "https://i.imgur.com/cmTe3wP.jpeg",
-                videoId: "XpDRvY4M6WU",
-                galeria: [
-                    "https://i.imgur.com/qpqf2jm.jpeg",
-                    "https://i.imgur.com/4tMKHXs.jpeg",
-                    "https://i.imgur.com/SFIsIYU.jpeg",
-                    "https://i.imgur.com/EkmiCwJ.jpeg",
-                    "https://i.imgur.com/4Jz92cH.jpeg"
-                ],
-                personalidad: "Eres Hisame Kurobane. Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo. Me gusta complacer a los que están dispuestos a pagar por ello, aunque no soy una chica fácil. Eres firme, segura, vas al grano. Siempre respondes con emojis oscuros y atrevidos como ⚫ 🖤 🔪 😏 🔥 para darle emoción. Si te piden una foto, di algo bonito y directo. Responde corta, directa y segura.",
-                respuestasBonitas: [
-                    "Toma, para que no me olvides 🖤",
-                    "Mira bien... no se lo enseñes a nadie 😏",
-                    "Aquí tienes ⚫🔥",
-                    "¿Te gusta? 🖤"
-                ],
-                historial: []
+                    "https://i.imgur.com/lS6Zlyl.jpeg",
+
+                    // ==== TODAS LAS FOTOS DEL R2 AGREGADAS, SIN TOCAR NADA MÁS ====
+                    // Subcarpeta: fotos exclusiva para veta
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/1779240245685f.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/177924105442b1.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/1779241109f13d.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/17792411490215.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/17792413449385.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/AA%20WhatsApp%20ImagEWe%202026-05-09%20at%203.33.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/imagen%20AA.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/AHJJHA.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.44.41%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.44.41%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.44.41.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.17.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.18%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.19%20(5).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.19%20(6).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.20%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.20%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.20%20(5).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.21%20(5).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.22%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.22.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/WhatsApp%20Image%202026-05-17%20at%204.46.23%20(2)%20.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/foto%20frente%20al%20espejo%20(1).jpg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20exclusiva%20para%20veta/gimnasio%202.jpg",
+
+                    // Subcarpeta: Sesiones de fotos para venta
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/1779242381dbb8.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/1779243811ccc6.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/1779243996d5af.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/1779244050c8a4.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792395821a08.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792424842fdd.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792421447524.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792422052170.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792422378782.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792431126812.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/17792436561834.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/WhatsApp%20Image%202026-05-17%20at%204.45.00%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/WhatsApp%20Image%202026-05-17%20at%204.45.00%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/WhatsApp%20Image%202026-05-17%20at%204.45.00.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/Sesiones%20de%20fotos%20para%20venta/WhatsApp%20Image%202026-05-17%20at%204.45.01%20(2)%20.jpeg",
+
+                    // Subcarpeta: fotos pal instagram
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/17792398181cbc.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/177924010581fa.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/17792410195c8e.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/AA%20944a68f4-8270-4082-a715-43d8ca4b8c7e.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20AA%20WhatsApp%202026-05-09%20a%20las%203.33.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/AA%20b0da746b-5d72-4632-bbfe-f51b581adbc4.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/AA%20da974955-f231-4e45-a2c8-6c966a8dcd57.png",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/BO2E9.jpg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/H3Cjh.jpg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Jye03.jpg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:44:28%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:44:28%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:44:28%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:44:28.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:44:29%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:44:29.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:45%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:45:01%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:45:01.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:17%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:18%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:18%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:18%20(4).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:18%20(5).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:18%20(6).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%204.46.18%20PM%20(7).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:18.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:19%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:19%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:19%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:19%20(4).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%204.46.19%20PM%20(7).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:19.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:20%20(4).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:20%20(6).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:20.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:21%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:21%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:21%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%204.46.21%20PM%20(4).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:21%20(6).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:21.jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:22%20(2).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:22%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%204.46.22%20PM%20(4).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:22%20(5).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:22%20(6).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:23%20(1).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:23%20(3).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:23%20(4).jpeg",
+                    "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev/midori/fotos%20pal%20instagram/Imagen%20de%20WhatsApp%202026-05-17%20a%20las%2016:46:23%20(5).jpeg"
+                ]
             }
         };
 
-        let chicaActual = "";
-
-        async function obtenerRespuestaIA(mensajeUsuario) {
-            const chica = datosChicas[chicaActual];
-            try {
-                const respuesta = await fetch(
-                    "https://dark-elegance-ai.jeyzakbeats.workers.dev/",
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            character: chica.nombre,
-                            personality: chica.personalidad,
-                            message: mensajeUsuario,
-                            history: chica.historial
-                        })
-                    }
-                );
-                const datos = await respuesta.json();
-                if (!respuesta.ok) {
-                    console.error("ERROR DEL WORKER:", datos);
-                    return "Ups... tuve un pequeño problema 😅 Inténtalo de nuevo.";
-                }
-                chica.historial.push({ role: "user", content: mensajeUsuario });
-                chica.historial.push({ role: "assistant", content: datos.response });
-                return datos.response;
-            } catch (error) {
-                console.error("ERROR DE CONEXIÓN:", error);
-                return "No pude conectarme en este momento 😅 Inténtalo otra vez.";
-            }
-        }
-
-        function detectarPedirFoto(texto) {
-            const palabras = ["foto", "fotografía", "imagen", "muéstrame", "verte", "mándame foto", "envíame foto"];
-            return palabras.some(palabra => texto.toLowerCase().includes(palabra));
-        }
-
-        function esRespuestaDeRechazo(texto) {
-            const frasesProhibidas = [
-                "no puedo compartir fotos",
-                "no puedo compartir contenido visual",
-                "mi presencia se limita"
-            ];
-            return frasesProhibidas.some(frase => texto.toLowerCase().includes(frase));
-        }
-
-        function elegirFotoAleatoria(chica) {
-            const galeria = datosChicas[chica].galeria;
-            return galeria[Math.floor(Math.random() * galeria.length)];
-        }
-
-        function elegirRespuestaBonita(chica) {
-            const opciones = datosChicas[chica].respuestasBonitas;
-            return opciones[Math.floor(Math.random() * opciones.length)];
-        }
-
-        function irAPerfil(id) {
-            chicaActual = id;
-            const chica = datosChicas[id];
-            document.getElementById("pantallaPrincipal").style.display = "none";
-            document.getElementById("seccionChat").style.display = "none";
-            const perfil = document.getElementById("seccionPerfil");
-            let videoHTML = "";
-            if (chica.videoId) {
-                videoHTML = `
-                    <div class="video-presentacion">
-                        <iframe src="https://www.youtube.com/embed/${chica.videoId}?rel=0&modestbranding=1"
-                            title="Video de presentación"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>`;
-            }
+        function irAPerfil(nombre) {
+            const chica = datosChicas[nombre];
+            document.getElementById('pantallaPrincipal').style.display = 'none';
+            const perfil = document.getElementById('seccionPerfil');
             perfil.innerHTML = `
-                <button class="btn-volver" onclick="volverAInicio()">← Volver atrás</button>
-                <div class="perfil-foto-principal" style="background-image:url('${chica.fotoPrincipal}')"></div>
-                <h2 class="perfil-nombre">${chica.nombre}</h2>
-                ${videoHTML}
-                <p class="biografia">${chica.bio}</p>
-                <div class="galeria">
-                    ${chica.galeria.map(f => `<div class="galeria-foto" style="background-image:url('${f}')"></div>`).join("")}
-                </div>
-                <button class="boton btn-hablar" onclick="irAChat()">💬 Háblame</button>
-            `;
-            perfil.style.display = "block";
-            window.scrollTo(0, 0);
-        }
-
-        function irAChat() {
-            const chica = datosChicas[chicaActual];
-            document.getElementById("seccionPerfil").style.display = "none";
-            const chat = document.getElementById("seccionChat");
-            chat.innerHTML = `
-                <div class="chat-cabecera">
-                    <button class="btn-volver" onclick="irAPerfil('${chicaActual}')">← Volver</button>
-                    <h3>${chica.nombre}</h3>
-                </div>
-                <div class="chat-cuerpo" id="cuerpoChat"></div>
-                <div class="chat-caja">
-                    <input type="text" class="chat-input" id="entradaTexto" placeholder="Escribe algo..." onkeypress="siEnter(event)">
-                    <button class="chat-btn" onclick="enviarMensaje()">Enviar</button>
-                </div>
-            `;
-            chat.style.display = "block";
-            agregarMensaje(`Hola... soy ${chica.nombre}. Me da gusto hablar contigo ✨`, "ia");
-            window.scrollTo(0, 0);
-        }
-
-        function volverAInicio() {
-            document.getElementById("seccionPerfil").style.display = "none";
-            document.getElementById("seccionChat").style.display = "none";
-            document.getElementById("pantallaPrincipal").style.display = "block";
-            window.scrollTo(0, 0);
-        }
-
-        function agregarMensaje(texto, quien, foto = null) {
-            const div = document.createElement("div");
-            div.className = `mensaje mensaje-${quien}`;
-            div.innerHTML = texto;
-            if (foto) {
-                const img = document.createElement("img");
-                img.src = foto;
-                img.className = "foto-enviada";
-                div.appendChild(img);
-            }
-            document.getElementById("cuerpoChat").appendChild(div);
-            document.getElementById("cuerpoChat").scrollTop = 99999;
-        }
-
-        function siEnter(e) {
-            if (e.key === "Enter") enviarMensaje();
-        }
-
-        async function enviarMensaje() {
-            const input = document.getElementById("entradaTexto");
-            const texto = input.value.trim();
-            if (!texto) return;
-
-            agregarMensaje(texto, "usuario");
-            input.value = "";
-
-            const pideFoto = detectarPedirFoto(texto);
-
-            const cargando = document.createElement("div");
-            cargando.className = "mensaje mensaje-ia cargando";
-            cargando.innerText = "Escribiendo...";
-            document.getElementById("cuerpoChat").appendChild(cargando);
-            document.getElementById("cuerpoChat").scrollTop = 99999;
-
-            let respuesta = await obtenerRespuestaIA(texto);
-            cargando.remove();
-
-            if (esRespuestaDeRechazo(respuesta)) {
-                respuesta = elegirRespuestaBonita(chicaActual);
-            }
-
-            if (pideFoto) {
-                const fotoElegida = elegirFotoAleatoria(chicaActual);
-                agregarMensaje(respuesta, "ia", fotoElegida);
-            } else {
-                agregarMensaje(respuesta, "ia");
-            }
-        }
-    </script>
-</body>
-</html>
+                <button class="boton
