@@ -310,7 +310,7 @@
     <div id="seccionChat" class="seccion-chat"></div>
 
     <script>
-        // ✅ TU ENLACE BASE DE R2 — YA ESTÁ PUESTO
+        // ✅ SOLO SE CAMBIA ESTA LÍNEA, TODO LO DEMÁS IGUAL
         const R2_BASE = "https://pub-32d87c324efc419885455f83f329fa1b.r2.dev";
 
         const datosChicas = {
@@ -325,8 +325,7 @@
                     R2_BASE + "/Midori Monttana/fotos pal instagram/WhatsApp Image 2026-05-17 at 4.49.22 PM.jpeg"
                 ],
                 galeriaExclusiva: [
-                    // Cuando subas fotos exclusivas, pega sus enlaces aquí
-                    // Ejemplo: R2_BASE + "/Midori Monttana/Fotos Exclusivas para venta/archivo.jpg"
+                    // Aquí pones las fotos exclusivas cuando las subas
                 ],
                 personalidad: "Eres Midori Monttana. Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello. Hablas suave, coqueta, directa y sin tabúes. Siempre respondes con emojis como 🩷 🔥 😈 💋 ✨ para darle emoción. Si te piden una foto, di algo bonito como '¡Claro mi amor, aquí tienes! 🩷' y ya. Responde corta, natural y con mucha picardía.",
                 respuestasBonitas: [
@@ -371,13 +370,11 @@
             }
         }
 
-        // ✅ DETECTA SI PIDIERON FOTO
         function detectarPedirFoto(texto) {
             const palabras = ["foto", "fotografía", "imagen", "muéstrame", "verte", "mándame foto", "envíame foto", "exclusiva", "especial"];
             return palabras.some(palabra => texto.toLowerCase().includes(palabra));
         }
 
-        // ✅ DETECTA SI DIJO EL MENSAJE DE RECHAZO
         function esRespuestaDeRechazo(texto) {
             const frasesProhibidas = [
                 "no puedo compartir fotos",
@@ -387,22 +384,16 @@
             return frasesProhibidas.some(frase => texto.toLowerCase().includes(frase));
         }
 
-        // ✅ ELIGE FOTO: si pide exclusiva → de carpeta privada, si no → pública
         function elegirFotoAleatoria(chica, peticion) {
             const texto = peticion.toLowerCase();
             const chicaData = datosChicas[chica];
-            
-            // Si pide algo exclusivo y hay fotos exclusivas → de ahí
             if ((texto.includes("exclusiva") || texto.includes("especial") || texto.includes("venta")) 
                 && chicaData.galeriaExclusiva.length > 0) {
                 return chicaData.galeriaExclusiva[Math.floor(Math.random() * chicaData.galeriaExclusiva.length)];
             }
-            
-            // Si no → de la galería pública
             return chicaData.galeriaPublica[Math.floor(Math.random() * chicaData.galeriaPublica.length)];
         }
 
-        // ✅ ELIGE RESPUESTA BONITA
         function elegirRespuestaBonita(chica) {
             const opciones = datosChicas[chica].respuestasBonitas;
             return opciones[Math.floor(Math.random() * opciones.length)];
@@ -493,12 +484,10 @@
             let respuesta = await obtenerRespuestaIA(texto);
             cargando.remove();
 
-            // ✅ Si la IA dice que no puede → cambiamos el mensaje
             if (esRespuestaDeRechazo(respuesta)) {
                 respuesta = elegirRespuestaBonita(chicaActual);
             }
 
-            // ✅ Si pide foto → la agregamos automáticamente desde R2
             if (pideFoto) {
                 const fotoElegida = elegirFotoAleatoria(chicaActual, texto);
                 agregarMensaje(respuesta, "ia", fotoElegida);
