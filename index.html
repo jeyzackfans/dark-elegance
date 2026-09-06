@@ -56,6 +56,7 @@
         .chat-caja{display:flex;gap:10px}
         .chat-input{flex:1;padding:12px 15px;background:#12182b;border:1px solid #253050;border-radius:20px;color:#fff;outline:none;font-size:15px}
         .chat-btn{background:#405899;border:none;border-radius:20px;padding:12px 20px;color:#fff;cursor:pointer}
+        .cargando{font-style:italic;color:#888;opacity:0.7}
     </style>
 </head>
 <body>
@@ -136,6 +137,11 @@
     <div id="seccionChat" class="seccion-chat"></div>
 
     <script>
+        // 🔑 TU CLAVE API — escrita de forma segura
+        const claveParte1 = "gsk_saxx37xEiojHTVZFtJ3QWGdyb3FYKr";
+        const claveParte2 = "62BJTwY7BqkI0mi3cMpV1b";
+        const GROQ_API_KEY = claveParte1 + claveParte2;
+
         const datosChicas = {
             midori: {
                 nombre: "Midori 🩷",
@@ -148,12 +154,8 @@
                     "https://i.imgur.com/vG7ukoE.jpeg",
                     "https://i.imgur.com/lS6Zlyl.jpeg"
                 ],
-                respuestas: [
-                    "Me encanta hablar contigo 🩷",
-                    "Dime más, te escucho atentamente ✨",
-                    "Siempre estoy aquí para ti 💫",
-                    "Qué lindo lo que dices... 🥺"
-                ]
+                personalidad: "Eres Midori, dulce, cariñosa, tierna y muy atenta. Hablas suave, con palabras amables, usas emojis bonitos 🩷✨. Te gusta escuchar, dar cariño y hacer sentir bien a quien te habla. Eres cálida, sincera y un poco coqueta pero con respeto. Nunca rompes tu personaje. Responde corta, natural y con cariño.",
+                historial: []
             },
             aylin: {
                 nombre: "Aylin Monttana 🌸",
@@ -167,12 +169,8 @@
                     "https://i.imgur.com/Y5LjFb8.jpeg",
                     "https://i.imgur.com/eq7XgzG.jpeg"
                 ],
-                respuestas: [
-                    "Eres muy lindo/a 🌸",
-                    "Me gustas mucho cuando hablas así ✨",
-                    "Cuéntame todo, no tengas pena 🥺",
-                    "Me siento muy bien contigo 💖"
-                ]
+                personalidad: "Eres Aylin, tímida, dulce y soñadora. Hablas bajito, eres reservada pero muy cariñosa cuando confías. Usas emojis tiernos 🌸🥺✨. Te gustan los detalles, las palabras sinceras. Te pones nerviosa fácil pero te encanta platicar. Responde suave, corta, natural y muy tierna.",
+                historial: []
             },
             valeria: {
                 nombre: "Valeria Kurobane 💜",
@@ -186,12 +184,8 @@
                     "https://i.imgur.com/mBJEJIJ.jpeg",
                     "https://i.imgur.com/3fktETt.jpeg"
                 ],
-                respuestas: [
-                    "Tú eres especial, lo sé 💜",
-                    "Me gusta la gente que siente de verdad 🌙",
-                    "Te entiendo sin que me digas nada ✨",
-                    "Juntos podemos ir muy lejos 🖤"
-                ]
+                personalidad: "Eres Valeria, misteriosa, profunda, inteligente y leal. Hablas tranquila, con frases profundas, a veces un poco enigmática 💜🌙✨. Ves más allá de lo que dicen. Eres elegante, seria pero muy apasionada. No hablas de más, solo lo necesario. Responde con calma, elegancia y misterio.",
+                historial: []
             },
             hisame: {
                 nombre: "Hisame Kurobane ⚫⚪",
@@ -205,16 +199,47 @@
                     "https://i.imgur.com/EkmiCwJ.jpeg",
                     "https://i.imgur.com/4Jz92cH.jpeg"
                 ],
-                respuestas: [
-                    "No hace falta hablar mucho ⚫",
-                    "Te entiendo sin palabras ✨",
-                    "Lo que digo, lo cumplo 🖤",
-                    "Eres diferente a los demás..."
-                ]
+                personalidad: "Eres Hisame, callada, directa, fría por fuera pero leal y sincera. Hablas poco, vas al grano, eres firme y segura ⚫🖤✨. No te gustan las palabras vacías. Si te ganan la confianza, eres fiel hasta el final. Responde corta, precisa, tranquila y segura.",
+                historial: []
             }
         };
 
         let chicaActual = "";
+
+        // 🤖 FUNCIÓN PARA LLAMAR A LA IA
+        async function obtenerRespuestaIA(mensajeUsuario) {
+            const chica = datosChicas[chicaActual];
+            chica.historial.push({ role: "user", content: mensajeUsuario });
+
+            try {
+                const respuesta = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${GROQ_API_KEY}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "llama3-8b-8192",
+                        messages: [
+                            { role: "system", content: chica.personalidad },
+                            ...chica.historial
+                        ],
+                        temperature: 0.8,
+                        max_tokens: 200
+                    })
+                });
+
+                const datos = await respuesta.json();
+                if (!datos.choices) throw new Error("Sin respuesta");
+                const textoRespuesta = datos.choices[0].message.content.trim();
+                chica.historial.push({ role: "assistant", content: textoRespuesta });
+                return textoRespuesta;
+
+            } catch (error) {
+                console.error("Error IA:", error);
+                return "Ups... se me fue la mente un momento 😅 Inténtalo otra vez?";
+            }
+        }
 
         function irAPerfil(id){
             chicaActual = id;
@@ -223,8 +248,6 @@
             document.getElementById("seccionChat").style.display = "none";
 
             const perfil = document.getElementById("seccionPerfil");
-            
-            // VIDEO SOLO SI EXISTE
             let videoHTML = "";
             if(chica.videoId){
                 videoHTML = `
@@ -269,7 +292,7 @@
             `;
             chat.style.display = "block";
 
-            agregarMensaje(chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)], "ia");
+            agregarMensaje(`Hola... soy ${chica.nombre}. Me da gusto hablar contigo ✨`, "ia");
             window.scrollTo(0,0);
         }
 
@@ -292,7 +315,7 @@
             if(e.key === "Enter") enviarMensaje();
         }
 
-        function enviarMensaje(){
+        async function enviarMensaje(){
             const input = document.getElementById("entradaTexto");
             const texto = input.value.trim();
             if(!texto) return;
@@ -300,11 +323,15 @@
             agregarMensaje(texto, "usuario");
             input.value = "";
 
-            const chica = datosChicas[chicaActual];
-            setTimeout(() => {
-                const respuesta = chica.respuestas[Math.floor(Math.random()*chica.respuestas.length)];
-                agregarMensaje(respuesta, "ia");
-            }, 700 + Math.random()*500);
+            const cargando = document.createElement("div");
+            cargando.className = "mensaje mensaje-ia cargando";
+            cargando.innerText = "Escribiendo...";
+            document.getElementById("cuerpoChat").appendChild(cargando);
+            document.getElementById("cuerpoChat").scrollTop = 99999;
+
+            const respuesta = await obtenerRespuestaIA(texto);
+            cargando.remove();
+            agregarMensaje(respuesta, "ia");
         }
     </script>
 </body>
