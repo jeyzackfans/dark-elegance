@@ -213,8 +213,8 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        // ✅ CAMBIADO AL MODELO NUEVO QUE SÍ EXISTE
-                        model: "llama3-8b-instant",
+                        // ✅ MODELO OFICIAL QUE SÍ EXISTE Y FUNCIONA
+                        model: "llama-3.1-8b-instant",
                         messages: [
                             { role: "system", content: chica.personalidad },
                             ...chica.historial
