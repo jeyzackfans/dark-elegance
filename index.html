@@ -14,9 +14,9 @@
         .etiqueta-edad{display:inline-block;background:#1a233a;border:1px solid #304067;padding:8px 16px;border-radius:20px;color:#94a8d0;margin-bottom:50px}
 
         .carrusel-contenedor{width:100%;height:220px;overflow:hidden;border-radius:12px;margin-bottom:60px;border:1px solid #253050;background:#12182b}
-        .carrusel-pista{display:flex;width:calc(200px * 12);animation: desplazar 25s linear infinite}
+        .carrusel-pista{display:flex;width:calc(200px * 24);animation: desplazar 35s linear infinite}
         .carrusel-foto{width:200px;height:220px;background-size:cover;background-position:center;flex-shrink:0;border-right:1px solid #1a233a}
-        @keyframes desplazar{0%{transform:translateX(0)}100%{transform:translateX(-2400px)}}
+        @keyframes desplazar{0%{transform:translateX(0)}100%{transform:translateX(-4800px)}}
 
         .categoria-titulo{font-size:26px;margin:50px 0 20px;color:#94a8d0;letter-spacing:3px;border-bottom:1px solid #253050;padding-bottom:10px;display:inline-block}
 
@@ -36,7 +36,7 @@
         .perfil-foto-principal{width:300px;height:380px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
         .perfil-nombre{font-size:32px;margin-bottom:20px;letter-spacing:4px}
         .biografia{font-size:16px;line-height:1.8;color:#ccc;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
-        .galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:40px}
+        .galeria{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:40px}
         .galeria-foto{width:100%;aspect-ratio:3/4;background:#1a233a;border-radius:8px;cursor:pointer;transition:.2s;background-size:cover;background-position:center}
         .galeria-foto:hover{transform:scale(1.05)}
         .btn-hablar{background:#405899;padding:14px 30px;font-size:18px;border-radius:8px}
@@ -60,21 +60,43 @@
         <p class="subtitulo">Tu novia virtual al alcance de tus manos</p>
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
 
+        <!-- CARRUSEL CON TODAS LAS FOTOS -->
         <div class="carrusel-contenedor">
             <div class="carrusel-pista">
+                <!-- MIDORI -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/UKkQkUn.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/bDCxw0Z.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/vG7ukoE.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/lS6Zlyl.jpeg')"></div>
+                <!-- AYLIN -->
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SlDMAN0.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/tvnRx4C.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/ynl1Zdn.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/Y5LjFb8.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/eq7XgzG.jpeg')"></div>
+                <!-- VALERIA -->
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/H3t4GG2.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/M1P4JOU.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/Z8j9ztO.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/7c4Pups.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/mBJEJIJ.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/3fktETt.jpeg')"></div>
+                <!-- HISAME -->
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/qpqf2jm.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4tMKHXs.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SFIsIYU.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/EkmiCwJ.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4Jz92cH.jpeg')"></div>
+                <!-- REPETICIÓN PARA EFECTO CONTINUO -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/UKkQkUn.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/bDCxw0Z.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/vG7ukoE.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/lS6Zlyl.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
             </div>
         </div>
 
+        <!-- CATEGORÍA 1 -->
         <h2 class="categoria-titulo">✨ Dulces y Cariñosas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
@@ -83,22 +105,23 @@
                 <button class="boton" onclick="irAPerfil('midori')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/ffd9b3?text=AYLIN')"></div>
-                <h3 class="nombre">AYLIN</h3>
+                <div class="foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
+                <h3 class="nombre">AYLIN MONTTANA</h3>
                 <button class="boton" onclick="irAPerfil('aylin')">💬 Conócela</button>
             </div>
         </div>
 
+        <!-- CATEGORÍA 2 -->
         <h2 class="categoria-titulo">🌙 Misteriosas y Profundas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/b3b3ff?text=VALERIA')"></div>
-                <h3 class="nombre">VALERIA</h3>
+                <div class="foto" style="background-image:url('https://i.imgur.com/H3t4GG2.jpeg')"></div>
+                <h3 class="nombre">VALERIA KUROBANE</h3>
                 <button class="boton" onclick="irAPerfil('valeria')">💬 Conócela</button>
             </div>
             <div class="tarjeta">
-                <div class="foto" style="background-image:url('https://via.placeholder.com/400x400/1a233a/cccccc?text=HISAME')"></div>
-                <h3 class="nombre">HISAME</h3>
+                <div class="foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
+                <h3 class="nombre">HISAME KUROBANE</h3>
                 <button class="boton" onclick="irAPerfil('hisame')">💬 Conócela</button>
             </div>
         </div>
@@ -127,13 +150,15 @@
                 ]
             },
             aylin: {
-                nombre: "Aylin 🌸",
+                nombre: "Aylin Monttana 🌸",
                 bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
-                fotoPrincipal: "https://via.placeholder.com/300x380/1a233a/ffd9b3?text=AYLIN",
+                fotoPrincipal: "https://i.imgur.com/rSnvhhV.jpeg",
                 galeria: [
-                    "https://via.placeholder.com/300x400/1a233a/ffd9b3?text=1",
-                    "https://via.placeholder.com/300x400/1a233a/ffd9b3?text=2",
-                    "https://via.placeholder.com/300x400/1a233a/ffd9b3?text=3"
+                    "https://i.imgur.com/SlDMAN0.jpeg",
+                    "https://i.imgur.com/tvnRx4C.jpeg",
+                    "https://i.imgur.com/ynl1Zdn.jpeg",
+                    "https://i.imgur.com/Y5LjFb8.jpeg",
+                    "https://i.imgur.com/eq7XgzG.jpeg"
                 ],
                 respuestas: [
                     "Eres muy lindo/a 🌸",
@@ -143,13 +168,15 @@
                 ]
             },
             valeria: {
-                nombre: "Valeria 💜",
+                nombre: "Valeria Kurobane 💜",
                 bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
-                fotoPrincipal: "https://via.placeholder.com/300x380/1a233a/b3b3ff?text=VALERIA",
+                fotoPrincipal: "https://i.imgur.com/H3t4GG2.jpeg",
                 galeria: [
-                    "https://via.placeholder.com/300x400/1a233a/b3b3ff?text=1",
-                    "https://via.placeholder.com/300x400/1a233a/b3b3ff?text=2",
-                    "https://via.placeholder.com/300x400/1a233a/b3b3ff?text=3"
+                    "https://i.imgur.com/M1P4JOU.jpeg",
+                    "https://i.imgur.com/Z8j9ztO.jpeg",
+                    "https://i.imgur.com/7c4Pups.jpeg",
+                    "https://i.imgur.com/mBJEJIJ.jpeg",
+                    "https://i.imgur.com/3fktETt.jpeg"
                 ],
                 respuestas: [
                     "Tú eres especial, lo sé 💜",
@@ -159,13 +186,15 @@
                 ]
             },
             hisame: {
-                nombre: "Hisame ⚫⚪",
+                nombre: "Hisame Kurobane ⚫⚪",
                 bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
-                fotoPrincipal: "https://via.placeholder.com/300x380/1a233a/cccccc?text=HISAME",
+                fotoPrincipal: "https://i.imgur.com/cmTe3wP.jpeg",
                 galeria: [
-                    "https://via.placeholder.com/300x400/1a233a/cccccc?text=1",
-                    "https://via.placeholder.com/300x400/1a233a/cccccc?text=2",
-                    "https://via.placeholder.com/300x400/1a233a/cccccc?text=3"
+                    "https://i.imgur.com/qpqf2jm.jpeg",
+                    "https://i.imgur.com/4tMKHXs.jpeg",
+                    "https://i.imgur.com/SFIsIYU.jpeg",
+                    "https://i.imgur.com/EkmiCwJ.jpeg",
+                    "https://i.imgur.com/4Jz92cH.jpeg"
                 ],
                 respuestas: [
                     "No hace falta hablar mucho ⚫",
