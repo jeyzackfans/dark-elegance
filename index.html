@@ -6,7 +6,7 @@
     <title>DARK ELEGANCE</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-        body{background:#0a0f1f;color:#fff;padding:40px 20px;transition: all 0.3s ease}
+        body{background:#0a0f1f;color:#fff;padding:40px 20px}
         .contenedor{max-width:1200px;margin:0 auto;text-align:center}
 
         h1{font-size:72px;letter-spacing:12px;margin-bottom:10px;font-weight:700;color:#e0e7ff;text-shadow:0 0 20px rgba(96,123,255,0.4)}
@@ -36,7 +36,6 @@
         .perfil-foto-principal{width:300px;height:380px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
         .perfil-nombre{font-size:32px;margin-bottom:15px;letter-spacing:4px}
 
-        /* VIDEO DE PRESENTACIÓN */
         .video-presentacion{width:100%;max-width:400px;height:225px;border-radius:12px;margin:0 auto 25px;overflow:hidden;border:1px solid #253050;background:#000}
         .video-presentacion iframe{width:100%;height:100%;border:none}
 
@@ -58,22 +57,22 @@
         .chat-btn{background:#405899;border:none;border-radius:20px;padding:12px 20px;color:#fff;cursor:pointer}
         .cargando{font-style:italic;color:#888;opacity:0.7}
 
-        /* VENTANA DE CLAVE */
-        .modal-clave{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999}
-        .modal-contenido{background:#12182b;border:1px solid #253050;border-radius:12px;padding:30px;max-width:400px;width:90%}
+        .modal-clave{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:9999}
+        .modal-contenido{background:#12182b;border:1px solid #253050;border-radius:12px;padding:30px;max-width:420px;width:90%}
         .modal-contenido h3{margin-bottom:15px;color:#e0e7ff}
-        .modal-contenido input{width:100%;padding:10px;margin:10px 0;background:#1a233a;border:1px solid #304067;border-radius:6px;color:#fff;outline:none}
-        .modal-contenido button{width:100%;padding:10px;background:#405899;border:none;border-radius:6px;color:#fff;cursor:pointer}
+        .modal-contenido input{width:100%;padding:12px;margin:10px 0;background:#1a233a;border:1px solid #304067;border-radius:6px;color:#fff;outline:none;font-size:14px}
+        .modal-contenido button{width:100%;padding:12px;background:#405899;border:none;border-radius:6px;color:#fff;cursor:pointer;font-size:16px}
+        .modal-contenido button:hover{background:#5068b9}
     </style>
 </head>
 <body>
 
-    <!-- VENTANA PARA PONER TU CLAVE — SOLO LA PRIMERA VEZ O SI LA CAMBIAS -->
     <div class="modal-clave" id="ventanaClave">
         <div class="modal-contenido">
             <h3>🔑 Ingresa tu Clave API de Groq</h3>
-            <input type="password" id="entradaClave" placeholder="Escribe tu clave aquí...">
-            <button onclick="guardarClave()">Guardar y Entrar</button>
+            <input type="text" id="entradaClave" placeholder="Ej: gsk_xxxxxxxxxxxxxx">
+            <button onclick="iniciarConClave()">✅ Entrar y Activar</button>
+            <p style="font-size:12px;color:#888;margin-top:10px">* Tu clave nunca se guarda en el código ni se envía a terceros</p>
         </div>
     </div>
 
@@ -82,43 +81,35 @@
         <p class="subtitulo">Tu novia virtual al alcance de tus manos</p>
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
 
-        <!-- CARRUSEL CON TODAS LAS FOTOS -->
         <div class="carrusel-contenedor">
             <div class="carrusel-pista">
-                <!-- MIDORI -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/UKkQkUn.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/bDCxw0Z.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/vG7ukoE.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/lS6Zlyl.jpeg')"></div>
-                <!-- AYLIN -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SlDMAN0.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/tvnRx4C.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/ynl1Zdn.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/Y5LjFb8.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/eq7XgzG.jpeg')"></div>
-                <!-- VALERIA -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/H3t4GG2.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/M1P4JOU.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/Z8j9ztO.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/7c4Pups.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/mBJEJIJ.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/3fktETt.jpeg')"></div>
-                <!-- HISAME -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/qpqf2jm.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4tMKHXs.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SFIsIYU.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/EkmiCwJ.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4Jz92cH.jpeg')"></div>
-                <!-- REPETICIÓN PARA EFECTO CONTINUO -->
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
             </div>
         </div>
 
-        <!-- CATEGORÍA 1 -->
         <h2 class="categoria-titulo">✨ Dulces y Cariñosas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
@@ -133,7 +124,6 @@
             </div>
         </div>
 
-        <!-- CATEGORÍA 2 -->
         <h2 class="categoria-titulo">🌙 Misteriosas y Profundas</h2>
         <div class="fila-chicas">
             <div class="tarjeta">
@@ -155,29 +145,17 @@
     <script>
         let GROQ_API_KEY = "";
 
-        // ✅ GUARDAMOS LA CLAVE SIN DEJARLA EN EL CÓDIGO
-        function guardarClave(){
+        function iniciarConClave(){
             const entrada = document.getElementById("entradaClave");
             const clave = entrada.value.trim();
-            if(!clave){
-                alert("¡Escribe tu clave primero!");
+            if(!clave || !clave.startsWith("gsk_")){
+                alert("❌ Escribe una clave válida, debe empezar con gsk_");
                 return;
             }
             GROQ_API_KEY = clave;
-            localStorage.setItem("groq_clave", clave); // Se guarda en tu navegador, nadie la ve
             document.getElementById("ventanaClave").style.display = "none";
             document.getElementById("pantallaPrincipal").style.display = "block";
         }
-
-        // ✅ CARGAMOS LA CLAVE SI YA LA HABÍAS PUESTO ANTES
-        window.onload = function(){
-            const claveGuardada = localStorage.getItem("groq_clave");
-            if(claveGuardada){
-                GROQ_API_KEY = claveGuardada;
-                document.getElementById("ventanaClave").style.display = "none";
-                document.getElementById("pantallaPrincipal").style.display = "block";
-            }
-        };
 
         const datosChicas = {
             midori: {
@@ -185,12 +163,7 @@
                 bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre.",
                 fotoPrincipal: "https://i.imgur.com/un4cbWb.jpeg",
                 videoId: null,
-                galeria: [
-                    "https://i.imgur.com/UKkQkUn.jpeg",
-                    "https://i.imgur.com/bDCxw0Z.jpeg",
-                    "https://i.imgur.com/vG7ukoE.jpeg",
-                    "https://i.imgur.com/lS6Zlyl.jpeg"
-                ],
+                galeria: ["https://i.imgur.com/UKkQkUn.jpeg","https://i.imgur.com/bDCxw0Z.jpeg","https://i.imgur.com/vG7ukoE.jpeg","https://i.imgur.com/lS6Zlyl.jpeg"],
                 personalidad: "Eres Midori, dulce, cariñosa, tierna y muy atenta. Hablas suave, con palabras amables, usas emojis bonitos 🩷✨. Te gusta escuchar, dar cariño y hacer sentir bien a quien te habla. Eres cálida, sincera y un poco coqueta pero con respeto. Nunca rompes tu personaje. Responde corta, natural y con cariño.",
                 historial: []
             },
@@ -199,13 +172,7 @@
                 bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
                 fotoPrincipal: "https://i.imgur.com/rSnvhhV.jpeg",
                 videoId: "PSEL0mldFeY",
-                galeria: [
-                    "https://i.imgur.com/SlDMAN0.jpeg",
-                    "https://i.imgur.com/tvnRx4C.jpeg",
-                    "https://i.imgur.com/ynl1Zdn.jpeg",
-                    "https://i.imgur.com/Y5LjFb8.jpeg",
-                    "https://i.imgur.com/eq7XgzG.jpeg"
-                ],
+                galeria: ["https://i.imgur.com/SlDMAN0.jpeg","https://i.imgur.com/tvnRx4C.jpeg","https://i.imgur.com/ynl1Zdn.jpeg","https://i.imgur.com/Y5LjFb8.jpeg","https://i.imgur.com/eq7XgzG.jpeg"],
                 personalidad: "Eres Aylin, tímida, dulce y soñadora. Hablas bajito, eres reservada pero muy cariñosa cuando confías. Usas emojis tiernos 🌸🥺✨. Te gustan los detalles, las palabras sinceras. Te pones nerviosa fácil pero te encanta platicar. Responde suave, corta, natural y muy tierna.",
                 historial: []
             },
@@ -214,13 +181,7 @@
                 bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
                 fotoPrincipal: "https://i.imgur.com/H3t4GG2.jpeg",
                 videoId: "UAJblNGyfjs",
-                galeria: [
-                    "https://i.imgur.com/M1P4JOU.jpeg",
-                    "https://i.imgur.com/Z8j9ztO.jpeg",
-                    "https://i.imgur.com/7c4Pups.jpeg",
-                    "https://i.imgur.com/mBJEJIJ.jpeg",
-                    "https://i.imgur.com/3fktETt.jpeg"
-                ],
+                galeria: ["https://i.imgur.com/M1P4JOU.jpeg","https://i.imgur.com/Z8j9ztO.jpeg","https://i.imgur.com/7c4Pups.jpeg","https://i.imgur.com/mBJEJIJ.jpeg","https://i.imgur.com/3fktETt.jpeg"],
                 personalidad: "Eres Valeria, misteriosa, profunda, inteligente y leal. Hablas tranquila, con frases profundas, a veces un poco enigmática 💜🌙✨. Ves más allá de lo que dicen. Eres elegante, seria pero muy apasionada. No hablas de más, solo lo necesario. Responde con calma, elegancia y misterio.",
                 historial: []
             },
@@ -229,13 +190,7 @@
                 bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
                 fotoPrincipal: "https://i.imgur.com/cmTe3wP.jpeg",
                 videoId: "XpDRvY4M6WU",
-                galeria: [
-                    "https://i.imgur.com/qpqf2jm.jpeg",
-                    "https://i.imgur.com/4tMKHXs.jpeg",
-                    "https://i.imgur.com/SFIsIYU.jpeg",
-                    "https://i.imgur.com/EkmiCwJ.jpeg",
-                    "https://i.imgur.com/4Jz92cH.jpeg"
-                ],
+                galeria: ["https://i.imgur.com/qpqf2jm.jpeg","https://i.imgur.com/4tMKHXs.jpeg","https://i.imgur.com/SFIsIYU.jpeg","https://i.imgur.com/EkmiCwJ.jpeg","https://i.imgur.com/4Jz92cH.jpeg"],
                 personalidad: "Eres Hisame, callada, directa, fría por fuera pero leal y sincera. Hablas poco, vas al grano, eres firme y segura ⚫🖤✨. No te gustan las palabras vacías. Si te ganan la confianza, eres fiel hasta el final. Responde corta, precisa, tranquila y segura.",
                 historial: []
             }
@@ -243,12 +198,10 @@
 
         let chicaActual = "";
 
-        // 🤖 FUNCIÓN PARA LLAMAR A LA IA — AHORA CON CLAVE CORRECTA
         async function obtenerRespuestaIA(mensajeUsuario) {
             if(!GROQ_API_KEY){
-                return "⚠️ Falta tu clave API — recarga la página y ponla de nuevo.";
+                return "⚠️ No hay clave activa — recarga y ponla de nuevo.";
             }
-
             const chica = datosChicas[chicaActual];
             chica.historial.push({ role: "user", content: mensajeUsuario });
 
@@ -277,8 +230,8 @@
                 return textoRespuesta;
 
             } catch (error) {
-                console.error("Error IA:", error);
-                return "Ups... se me fue la mente un momento 😅 Inténtalo otra vez?";
+                console.error("ERROR:", error);
+                return `❌ Error: ${error.message || "No se pudo conectar"} — revisa tu clave o crea una nueva en Groq`;
             }
         }
 
@@ -291,13 +244,7 @@
             const perfil = document.getElementById("seccionPerfil");
             let videoHTML = "";
             if(chica.videoId){
-                videoHTML = `
-                <div class="video-presentacion">
-                    <iframe src="https://www.youtube.com/embed/${chica.videoId}?rel=0&modestbranding=1" 
-                        title="Video de presentación" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                </div>`;
+                videoHTML = `<div class="video-presentacion"><iframe src="https://www.youtube.com/embed/${chica.videoId}?rel=0&modestbranding=1" title="Video de presentación" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
             }
 
             perfil.innerHTML = `
@@ -306,9 +253,7 @@
                 <h2 class="perfil-nombre">${chica.nombre}</h2>
                 ${videoHTML}
                 <p class="biografia">${chica.bio}</p>
-                <div class="galeria">
-                    ${chica.galeria.map(foto => `<div class="galeria-foto" style="background-image:url('${foto}')"></div>`).join("")}
-                </div>
+                <div class="galeria">${chica.galeria.map(f=>`<div class="galeria-foto" style="background-image:url('${f}')"></div>`).join("")}</div>
                 <button class="boton btn-hablar" onclick="irAChat()">💬 Háblame</button>
             `;
             perfil.style.display = "block";
