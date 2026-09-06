@@ -34,7 +34,12 @@
         .btn-volver{background:transparent;border:none;color:#94a8d0;font-size:16px;cursor:pointer;margin-bottom:30px;display:inline-flex;align-items:center;gap:8px}
         .btn-volver:hover{color:#fff}
         .perfil-foto-principal{width:300px;height:380px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
-        .perfil-nombre{font-size:32px;margin-bottom:20px;letter-spacing:4px}
+        .perfil-nombre{font-size:32px;margin-bottom:15px;letter-spacing:4px}
+
+        /* VIDEO DE PRESENTACIÓN */
+        .video-presentacion{width:100%;max-width:400px;height:225px;border-radius:12px;margin:0 auto 25px;overflow:hidden;border:1px solid #253050;background:#000}
+        .video-presentacion iframe{width:100%;height:100%;border:none}
+
         .biografia{font-size:16px;line-height:1.8;color:#ccc;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
         .galeria{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:40px}
         .galeria-foto{width:100%;aspect-ratio:3/4;background:#1a233a;border-radius:8px;cursor:pointer;transition:.2s;background-size:cover;background-position:center}
@@ -136,6 +141,7 @@
                 nombre: "Midori 🩷",
                 bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre.",
                 fotoPrincipal: "https://i.imgur.com/un4cbWb.jpeg",
+                videoId: null,
                 galeria: [
                     "https://i.imgur.com/UKkQkUn.jpeg",
                     "https://i.imgur.com/bDCxw0Z.jpeg",
@@ -153,6 +159,7 @@
                 nombre: "Aylin Monttana 🌸",
                 bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
                 fotoPrincipal: "https://i.imgur.com/rSnvhhV.jpeg",
+                videoId: "PSEL0mldFeY",
                 galeria: [
                     "https://i.imgur.com/SlDMAN0.jpeg",
                     "https://i.imgur.com/tvnRx4C.jpeg",
@@ -171,6 +178,7 @@
                 nombre: "Valeria Kurobane 💜",
                 bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
                 fotoPrincipal: "https://i.imgur.com/H3t4GG2.jpeg",
+                videoId: "UAJblNGyfjs",
                 galeria: [
                     "https://i.imgur.com/M1P4JOU.jpeg",
                     "https://i.imgur.com/Z8j9ztO.jpeg",
@@ -189,6 +197,7 @@
                 nombre: "Hisame Kurobane ⚫⚪",
                 bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
                 fotoPrincipal: "https://i.imgur.com/cmTe3wP.jpeg",
+                videoId: "XpDRvY4M6WU",
                 galeria: [
                     "https://i.imgur.com/qpqf2jm.jpeg",
                     "https://i.imgur.com/4tMKHXs.jpeg",
@@ -214,10 +223,24 @@
             document.getElementById("seccionChat").style.display = "none";
 
             const perfil = document.getElementById("seccionPerfil");
+            
+            // VIDEO SOLO SI EXISTE
+            let videoHTML = "";
+            if(chica.videoId){
+                videoHTML = `
+                <div class="video-presentacion">
+                    <iframe src="https://www.youtube.com/embed/${chica.videoId}?rel=0&modestbranding=1" 
+                        title="Video de presentación" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+                </div>`;
+            }
+
             perfil.innerHTML = `
                 <button class="btn-volver" onclick="volverAInicio()">← Volver atrás</button>
                 <div class="perfil-foto-principal" style="background-image:url('${chica.fotoPrincipal}')"></div>
                 <h2 class="perfil-nombre">${chica.nombre}</h2>
+                ${videoHTML}
                 <p class="biografia">${chica.bio}</p>
                 <div class="galeria">
                     ${chica.galeria.map(foto => `<div class="galeria-foto" style="background-image:url('${foto}')"></div>`).join("")}
