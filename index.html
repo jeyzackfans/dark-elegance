@@ -4,69 +4,356 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DARK ELEGANCE</title>
+
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-        body{background:#0a0f1f;color:#fff;padding:40px 20px}
-        .contenedor{max-width:1200px;margin:0 auto;text-align:center}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, sans-serif;
+        }
 
-        h1{font-size:72px;letter-spacing:12px;margin-bottom:10px;font-weight:700;color:#e0e7ff;text-shadow:0 0 20px rgba(96,123,255,0.4)}
-        .subtitulo{font-size:22px;color:#b8b8b8;margin-bottom:30px;letter-spacing:2px}
-        .etiqueta-edad{display:inline-block;background:#1a233a;border:1px solid #304067;padding:8px 16px;border-radius:20px;color:#94a8d0;margin-bottom:50px}
+        body {
+            background: #0a0f1f;
+            color: #fff;
+            padding: 40px 20px;
+        }
 
-        .carrusel-contenedor{width:100%;height:220px;overflow:hidden;border-radius:12px;margin-bottom:60px;border:1px solid #253050;background:#12182b}
-        .carrusel-pista{display:flex;width:calc(200px * 24);animation: desplazar 35s linear infinite}
-        .carrusel-foto{width:200px;height:220px;background-size:cover;background-position:center;flex-shrink:0;border-right:1px solid #1a233a}
-        @keyframes desplazar{0%{transform:translateX(0)}100%{transform:translateX(-4800px)}}
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-        .categoria-titulo{font-size:26px;margin:50px 0 20px;color:#94a8d0;letter-spacing:3px;border-bottom:1px solid #253050;padding-bottom:10px;display:inline-block}
+        h1 {
+            font-size: 72px;
+            letter-spacing: 12px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #e0e7ff;
+            text-shadow: 0 0 20px rgba(96,123,255,0.4);
+        }
 
-        .fila-chicas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-bottom:40px}
-        @media(max-width:900px){.fila-chicas{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:500px){.fila-chicas{grid-template-columns:1fr}}
-        .tarjeta{background:#12182b;border:1px solid #253050;border-radius:12px;padding:20px;transition:.3s;cursor:pointer}
-        .tarjeta:hover{transform:translateY(-8px);border-color:#405899;box-shadow:0 10px 25px rgba(64,88,153,.3)}
-        .foto{width:100%;height:280px;background:#1a233a;border-radius:8px;margin-bottom:20px;background-size:cover;background-position:center}
-        .nombre{font-size:20px;letter-spacing:3px;margin-bottom:10px}
-        .boton{padding:10px 20px;background:#253050;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.2s;font-size:16px}
-        .boton:hover{background:#354475}
+        .subtitulo {
+            font-size: 22px;
+            color: #b8b8b8;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
 
-        .seccion-perfil{display:none;max-width:800px;margin:0 auto;text-align:center}
-        .btn-volver{background:transparent;border:none;color:#94a8d0;font-size:16px;cursor:pointer;margin-bottom:30px;display:inline-flex;align-items:center;gap:8px}
-        .btn-volver:hover{color:#fff}
-        .perfil-foto-principal{width:300px;height:380px;background:#1a233a;border-radius:12px;margin:0 auto 25px;background-size:cover;background-position:center}
-        .perfil-nombre{font-size:32px;margin-bottom:15px;letter-spacing:4px}
+        .etiqueta-edad {
+            display: inline-block;
+            background: #1a233a;
+            border: 1px solid #304067;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #94a8d0;
+            margin-bottom: 50px;
+        }
 
-        .video-presentacion{width:100%;max-width:400px;height:225px;border-radius:12px;margin:0 auto 25px;overflow:hidden;border:1px solid #253050;background:#000}
-        .video-presentacion iframe{width:100%;height:100%;border:none}
+        .carrusel-contenedor {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            border: 1px solid #253050;
+            background: #12182b;
+        }
 
-        .biografia{font-size:16px;line-height:1.8;color:#ccc;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
-        .galeria{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:40px}
-        .galeria-foto{width:100%;aspect-ratio:3/4;background:#1a233a;border-radius:8px;cursor:pointer;transition:.2s;background-size:cover;background-position:center}
-        .galeria-foto:hover{transform:scale(1.05)}
-        .btn-hablar{background:#405899;padding:14px 30px;font-size:18px;border-radius:8px}
-        .btn-hablar:hover{background:#5068b9}
+        .carrusel-pista {
+            display: flex;
+            width: calc(200px * 24);
+            animation: desplazar 35s linear infinite;
+        }
 
-        .seccion-chat{display:none;max-width:500px;margin:0 auto}
-        .chat-cabecera{display:flex;align-items:center;gap:15px;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #253050}
-        .chat-cuerpo{height:450px;background:#12182b;border-radius:12px;padding:20px;overflow-y:auto;margin-bottom:15px}
-        .mensaje{margin-bottom:12px;padding:8px 12px;border-radius:18px;max-width:80%;font-size:15px}
-        .mensaje-usuario{background:#253050;margin-left:auto;text-align:right}
-        .mensaje-ia{background:#1a233a;margin-right:auto;text-align:left}
-        .chat-caja{display:flex;gap:10px}
-        .chat-input{flex:1;padding:12px 15px;background:#12182b;border:1px solid #253050;border-radius:20px;color:#fff;outline:none;font-size:15px}
-        .chat-btn{background:#405899;border:none;border-radius:20px;padding:12px 20px;color:#fff;cursor:pointer}
-        .cargando{font-style:italic;color:#888;opacity:0.7}
+        .carrusel-foto {
+            width: 200px;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            border-right: 1px solid #1a233a;
+        }
+
+        @keyframes desplazar {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-4800px);
+            }
+        }
+
+        .categoria-titulo {
+            font-size: 26px;
+            margin: 50px 0 20px;
+            color: #94a8d0;
+            letter-spacing: 3px;
+            border-bottom: 1px solid #253050;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .fila-chicas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media(max-width:900px) {
+            .fila-chicas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:500px) {
+            .fila-chicas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tarjeta {
+            background: #12182b;
+            border: 1px solid #253050;
+            border-radius: 12px;
+            padding: 20px;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            border-color: #405899;
+            box-shadow: 0 10px 25px rgba(64,88,153,.3);
+        }
+
+        .foto {
+            width: 100%;
+            height: 280px;
+            background: #1a233a;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .nombre {
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .boton {
+            padding: 10px 20px;
+            background: #253050;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: .2s;
+            font-size: 16px;
+        }
+
+        .boton:hover {
+            background: #354475;
+        }
+
+        .seccion-perfil {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .btn-volver {
+            background: transparent;
+            border: none;
+            color: #94a8d0;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-volver:hover {
+            color: #fff;
+        }
+
+        .perfil-foto-principal {
+            width: 300px;
+            height: 380px;
+            background: #1a233a;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .perfil-nombre {
+            font-size: 32px;
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+        }
+
+        .video-presentacion {
+            width: 100%;
+            max-width: 400px;
+            height: 225px;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 1px solid #253050;
+            background: #000;
+        }
+
+        .video-presentacion iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .biografia {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .galeria-foto {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #1a233a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .2s;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .galeria-foto:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-hablar {
+            background: #405899;
+            padding: 14px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+        }
+
+        .btn-hablar:hover {
+            background: #5068b9;
+        }
+
+        .seccion-chat {
+            display: none;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .chat-cabecera {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #253050;
+        }
+
+        .chat-cuerpo {
+            height: 450px;
+            background: #12182b;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .mensaje {
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 80%;
+            font-size: 15px;
+        }
+
+        .mensaje-usuario {
+            background: #253050;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .mensaje-ia {
+            background: #1a233a;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .chat-caja {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            background: #12182b;
+            border: 1px solid #253050;
+            border-radius: 20px;
+            color: #fff;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .chat-btn {
+            background: #405899;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .cargando {
+            font-style: italic;
+            color: #888;
+            opacity: 0.7;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="contenedor" id="pantallaPrincipal">
+
         <h1>DARK ELEGANCE</h1>
-        <p class="subtitulo">Tu novia virtual al alcance de tus manos</p>
-        <div class="etiqueta-edad">18+ • Experiencia virtual</div>
+
+        <p class="subtitulo">
+            Tu novia virtual al alcance de tus manos
+        </p>
+
+        <div class="etiqueta-edad">
+            18+ • Experiencia virtual
+        </div>
 
         <div class="carrusel-contenedor">
             <div class="carrusel-pista">
+
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/UKkQkUn.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/bDCxw0Z.jpeg')"></div>
@@ -91,196 +378,556 @@
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/EkmiCwJ.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4Jz92cH.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
+
             </div>
         </div>
 
-        <h2 class="categoria-titulo">✨ Dulces y Cariñosas</h2>
+        <h2 class="categoria-titulo">
+            ✨ Dulces y Cariñosas
+        </h2>
+
         <div class="fila-chicas">
+
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://i.imgur.com/un4cbWb.jpeg')"></div>
                 <h3 class="nombre">MIDORI</h3>
-                <button class="boton" onclick="irAPerfil('midori')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('midori')">
+                    💬 Conócela
+                </button>
             </div>
+
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://i.imgur.com/rSnvhhV.jpeg')"></div>
                 <h3 class="nombre">AYLIN MONTTANA</h3>
-                <button class="boton" onclick="irAPerfil('aylin')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('aylin')">
+                    💬 Conócela
+                </button>
             </div>
+
         </div>
 
-        <h2 class="categoria-titulo">🌙 Misteriosas y Profundas</h2>
+        <h2 class="categoria-titulo">
+            🌙 Misteriosas y Profundas
+        </h2>
+
         <div class="fila-chicas">
+
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://i.imgur.com/H3t4GG2.jpeg')"></div>
                 <h3 class="nombre">VALERIA KUROBANE</h3>
-                <button class="boton" onclick="irAPerfil('valeria')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('valeria')">
+                    💬 Conócela
+                </button>
             </div>
+
             <div class="tarjeta">
                 <div class="foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
                 <h3 class="nombre">HISAME KUROBANE</h3>
-                <button class="boton" onclick="irAPerfil('hisame')">💬 Conócela</button>
+                <button class="boton" onclick="irAPerfil('hisame')">
+                    💬 Conócela
+                </button>
             </div>
+
         </div>
+
     </div>
 
+
     <div id="seccionPerfil" class="seccion-perfil"></div>
+
     <div id="seccionChat" class="seccion-chat"></div>
 
+
     <script>
+
         const datosChicas = {
+
             midori: {
                 nombre: "Midori 🩷",
+
                 bio: "Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre.",
+
                 fotoPrincipal: "https://i.imgur.com/un4cbWb.jpeg",
+
                 videoId: null,
-                galeria: ["https://i.imgur.com/UKkQkUn.jpeg","https://i.imgur.com/bDCxw0Z.jpeg","https://i.imgur.com/vG7ukoE.jpeg","https://i.imgur.com/lS6Zlyl.jpeg"],
+
+                galeria: [
+                    "https://i.imgur.com/UKkQkUn.jpeg",
+                    "https://i.imgur.com/bDCxw0Z.jpeg",
+                    "https://i.imgur.com/vG7ukoE.jpeg",
+                    "https://i.imgur.com/lS6Zlyl.jpeg"
+                ],
+
                 personalidad: "Eres Midori, dulce, cariñosa, tierna y muy atenta. Hablas suave, con palabras amables, usas emojis bonitos 🩷✨. Te gusta escuchar, dar cariño y hacer sentir bien a quien te habla. Eres cálida, sincera y un poco coqueta pero con respeto. Nunca rompes tu personaje. Responde corta, natural y con cariño.",
+
                 historial: []
             },
+
+
             aylin: {
                 nombre: "Aylin Monttana 🌸",
+
                 bio: "Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte.",
+
                 fotoPrincipal: "https://i.imgur.com/rSnvhhV.jpeg",
+
                 videoId: "PSEL0mldFeY",
-                galeria: ["https://i.imgur.com/SlDMAN0.jpeg","https://i.imgur.com/tvnRx4C.jpeg","https://i.imgur.com/ynl1Zdn.jpeg","https://i.imgur.com/Y5LjFb8.jpeg","https://i.imgur.com/eq7XgzG.jpeg"],
+
+                galeria: [
+                    "https://i.imgur.com/SlDMAN0.jpeg",
+                    "https://i.imgur.com/tvnRx4C.jpeg",
+                    "https://i.imgur.com/ynl1Zdn.jpeg",
+                    "https://i.imgur.com/Y5LjFb8.jpeg",
+                    "https://i.imgur.com/eq7XgzG.jpeg"
+                ],
+
                 personalidad: "Eres Aylin, tímida, dulce y soñadora. Hablas bajito, eres reservada pero muy cariñosa cuando confías. Usas emojis tiernos 🌸🥺✨. Te gustan los detalles, las palabras sinceras. Te pones nerviosa fácil pero te encanta platicar. Responde suave, corta, natural y muy tierna.",
+
                 historial: []
             },
+
+
             valeria: {
                 nombre: "Valeria Kurobane 💜",
+
                 bio: "Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena.",
+
                 fotoPrincipal: "https://i.imgur.com/H3t4GG2.jpeg",
+
                 videoId: "UAJblNGyfjs",
-                galeria: ["https://i.imgur.com/M1P4JOU.jpeg","https://i.imgur.com/Z8j9ztO.jpeg","https://i.imgur.com/7c4Pups.jpeg","https://i.imgur.com/mBJEJIJ.jpeg","https://i.imgur.com/3fktETt.jpeg"],
+
+                galeria: [
+                    "https://i.imgur.com/M1P4JOU.jpeg",
+                    "https://i.imgur.com/Z8j9ztO.jpeg",
+                    "https://i.imgur.com/7c4Pups.jpeg",
+                    "https://i.imgur.com/mBJEJIJ.jpeg",
+                    "https://i.imgur.com/3fktETt.jpeg"
+                ],
+
                 personalidad: "Eres Valeria, misteriosa, profunda, inteligente y leal. Hablas tranquila, con frases profundas, a veces un poco enigmática 💜🌙✨. Ves más allá de lo que dicen. Eres elegante, seria pero muy apasionada. No hablas de más, solo lo necesario. Responde con calma, elegancia y misterio.",
+
                 historial: []
             },
+
+
             hisame: {
                 nombre: "Hisame Kurobane ⚫⚪",
+
                 bio: "Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo.",
+
                 fotoPrincipal: "https://i.imgur.com/cmTe3wP.jpeg",
+
                 videoId: "XpDRvY4M6WU",
-                galeria: ["https://i.imgur.com/qpqf2jm.jpeg","https://i.imgur.com/4tMKHXs.jpeg","https://i.imgur.com/SFIsIYU.jpeg","https://i.imgur.com/EkmiCwJ.jpeg","https://i.imgur.com/4Jz92cH.jpeg"],
+
+                galeria: [
+                    "https://i.imgur.com/qpqf2jm.jpeg",
+                    "https://i.imgur.com/4tMKHXs.jpeg",
+                    "https://i.imgur.com/SFIsIYU.jpeg",
+                    "https://i.imgur.com/EkmiCwJ.jpeg",
+                    "https://i.imgur.com/4Jz92cH.jpeg"
+                ],
+
                 personalidad: "Eres Hisame, callada, directa, fría por fuera pero leal y sincera. Hablas poco, vas al grano, eres firme y segura ⚫🖤✨. No te gustan las palabras vacías. Si te ganan la confianza, eres fiel hasta el final. Responde corta, precisa, tranquila y segura.",
+
                 historial: []
             }
+
         };
+
 
         let chicaActual = "";
 
-        // ✅ CONEXIÓN A TU PROPIO WORKER DE CLOUDFLARE — YA CONFIGURADO
+
+        // ============================================
+        // CONEXIÓN REAL CON DARK ELEGANCE AI
+        // ============================================
+
         async function obtenerRespuestaIA(mensajeUsuario) {
+
             const chica = datosChicas[chicaActual];
-            chica.historial.push({ role: "user", content: mensajeUsuario });
 
             try {
-                const respuesta = await fetch("https://krazyrecors.workers.dev", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        messages: [
-                            { role: "system", content: chica.personalidad },
-                            ...chica.historial
-                        ]
-                    })
+
+                const respuesta = await fetch(
+                    "https://dark-elegance-ai.jeyzakbeats.workers.dev/",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            character: chica.nombre,
+
+                            message: mensajeUsuario,
+
+                            history: chica.historial
+
+                        })
+                    }
+                );
+
+
+                const datos = await respuesta.json();
+
+
+                if (!respuesta.ok) {
+
+                    console.error(
+                        "ERROR DEL WORKER:",
+                        datos
+                    );
+
+                    return "Ups... tuve un pequeño problema 😅 Inténtalo de nuevo.";
+                }
+
+
+                // Guardamos la conversación localmente
+                chica.historial.push({
+                    role: "user",
+                    content: mensajeUsuario
                 });
 
-                const texto = await respuesta.text();
-                chica.historial.push({ role: "assistant", content: texto });
-                return texto;
+
+                chica.historial.push({
+                    role: "assistant",
+                    content: datos.response
+                });
+
+
+                return datos.response;
+
 
             } catch (error) {
-                console.error("ERROR:", error);
-                return "Ups... se me fue la mente un momento 😅 Inténtalo otra vez?";
+
+                console.error(
+                    "ERROR DE CONEXIÓN:",
+                    error
+                );
+
+                return "No pude conectarme en este momento 😅 Inténtalo otra vez.";
             }
+
         }
 
-        function irAPerfil(id){
-            chicaActual = id;
-            const chica = datosChicas[id];
-            document.getElementById("pantallaPrincipal").style.display = "none";
-            document.getElementById("seccionChat").style.display = "none";
 
-            const perfil = document.getElementById("seccionPerfil");
+        // ============================================
+        // ABRIR PERFIL
+        // ============================================
+
+        function irAPerfil(id) {
+
+            chicaActual = id;
+
+            const chica = datosChicas[id];
+
+            document.getElementById(
+                "pantallaPrincipal"
+            ).style.display = "none";
+
+            document.getElementById(
+                "seccionChat"
+            ).style.display = "none";
+
+
+            const perfil =
+                document.getElementById(
+                    "seccionPerfil"
+                );
+
+
             let videoHTML = "";
-            if(chica.videoId){
-                videoHTML = `<div class="video-presentacion"><iframe src="https://www.youtube.com/embed/${chica.videoId}?rel=0&modestbranding=1" title="Video de presentación" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+
+
+            if (chica.videoId) {
+
+                videoHTML = `
+                    <div class="video-presentacion">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/${chica.videoId}?rel=0&modestbranding=1"
+                            title="Video de presentación"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+
+                    </div>
+                `;
             }
+
 
             perfil.innerHTML = `
-                <button class="btn-volver" onclick="volverAInicio()">← Volver atrás</button>
-                <div class="perfil-foto-principal" style="background-image:url('${chica.fotoPrincipal}')"></div>
-                <h2 class="perfil-nombre">${chica.nombre}</h2>
+
+                <button
+                    class="btn-volver"
+                    onclick="volverAInicio()">
+                    ← Volver atrás
+                </button>
+
+
+                <div
+                    class="perfil-foto-principal"
+                    style="background-image:url('${chica.fotoPrincipal}')">
+                </div>
+
+
+                <h2 class="perfil-nombre">
+                    ${chica.nombre}
+                </h2>
+
+
                 ${videoHTML}
-                <p class="biografia">${chica.bio}</p>
-                <div class="galeria">${chica.galeria.map(f=>`<div class="galeria-foto" style="background-image:url('${f}')"></div>`).join("")}</div>
-                <button class="boton btn-hablar" onclick="irAChat()">💬 Háblame</button>
+
+
+                <p class="biografia">
+                    ${chica.bio}
+                </p>
+
+
+                <div class="galeria">
+
+                    ${chica.galeria.map(
+                        f =>
+                        `<div
+                            class="galeria-foto"
+                            style="background-image:url('${f}')">
+                        </div>`
+                    ).join("")}
+
+                </div>
+
+
+                <button
+                    class="boton btn-hablar"
+                    onclick="irAChat()">
+                    💬 Háblame
+                </button>
+
             `;
+
+
             perfil.style.display = "block";
-            window.scrollTo(0,0);
+
+            window.scrollTo(0, 0);
         }
 
-        function irAChat(){
-            const chica = datosChicas[chicaActual];
-            document.getElementById("seccionPerfil").style.display = "none";
 
-            const chat = document.getElementById("seccionChat");
+        // ============================================
+        // ABRIR CHAT
+        // ============================================
+
+        function irAChat() {
+
+            const chica =
+                datosChicas[chicaActual];
+
+
+            document.getElementById(
+                "seccionPerfil"
+            ).style.display = "none";
+
+
+            const chat =
+                document.getElementById(
+                    "seccionChat"
+                );
+
+
             chat.innerHTML = `
+
                 <div class="chat-cabecera">
-                    <button class="btn-volver" onclick="irAPerfil('${chicaActual}')">← Volver</button>
-                    <h3>${chica.nombre}</h3>
+
+                    <button
+                        class="btn-volver"
+                        onclick="irAPerfil('${chicaActual}')">
+                        ← Volver
+                    </button>
+
+                    <h3>
+                        ${chica.nombre}
+                    </h3>
+
                 </div>
-                <div class="chat-cuerpo" id="cuerpoChat"></div>
+
+
+                <div
+                    class="chat-cuerpo"
+                    id="cuerpoChat">
+                </div>
+
+
                 <div class="chat-caja">
-                    <input type="text" class="chat-input" id="entradaTexto" placeholder="Escribe algo..." onkeypress="siEnter(event)">
-                    <button class="chat-btn" onclick="enviarMensaje()">Enviar</button>
+
+                    <input
+                        type="text"
+                        class="chat-input"
+                        id="entradaTexto"
+                        placeholder="Escribe algo..."
+                        onkeypress="siEnter(event)"
+                    >
+
+
+                    <button
+                        class="chat-btn"
+                        onclick="enviarMensaje()">
+                        Enviar
+                    </button>
+
                 </div>
+
             `;
+
+
             chat.style.display = "block";
 
-            agregarMensaje(`Hola... soy ${chica.nombre}. Me da gusto hablar contigo ✨`, "ia");
-            window.scrollTo(0,0);
+
+            agregarMensaje(
+                `Hola... soy ${chica.nombre}. Me da gusto hablar contigo ✨`,
+                "ia"
+            );
+
+
+            window.scrollTo(0, 0);
+
         }
 
-        function volverAInicio(){
-            document.getElementById("seccionPerfil").style.display = "none";
-            document.getElementById("seccionChat").style.display = "none";
-            document.getElementById("pantallaPrincipal").style.display = "block";
-            window.scrollTo(0,0);
+
+        // ============================================
+        // VOLVER AL INICIO
+        // ============================================
+
+        function volverAInicio() {
+
+            document.getElementById(
+                "seccionPerfil"
+            ).style.display = "none";
+
+            document.getElementById(
+                "seccionChat"
+            ).style.display = "none";
+
+            document.getElementById(
+                "pantallaPrincipal"
+            ).style.display = "block";
+
+            window.scrollTo(0, 0);
+
         }
 
-        function agregarMensaje(texto, quien){
-            const div = document.createElement("div");
-            div.className = `mensaje mensaje-${quien}`;
+
+        // ============================================
+        // MOSTRAR MENSAJE
+        // ============================================
+
+        function agregarMensaje(texto, quien) {
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                `mensaje mensaje-${quien}`;
+
             div.innerText = texto;
-            document.getElementById("cuerpoChat").appendChild(div);
-            document.getElementById("cuerpoChat").scrollTop = 99999;
+
+
+            document.getElementById(
+                "cuerpoChat"
+            ).appendChild(div);
+
+
+            document.getElementById(
+                "cuerpoChat"
+            ).scrollTop = 99999;
+
         }
 
-        function siEnter(e){
-            if(e.key === "Enter") enviarMensaje();
+
+        // ============================================
+        // ENTER PARA ENVIAR
+        // ============================================
+
+        function siEnter(e) {
+
+            if (e.key === "Enter") {
+
+                enviarMensaje();
+
+            }
+
         }
 
-        async function enviarMensaje(){
-            const input = document.getElementById("entradaTexto");
-            const texto = input.value.trim();
-            if(!texto) return;
 
-            agregarMensaje(texto, "usuario");
+        // ============================================
+        // ENVIAR MENSAJE
+        // ============================================
+
+        async function enviarMensaje() {
+
+            const input =
+                document.getElementById(
+                    "entradaTexto"
+                );
+
+
+            const texto =
+                input.value.trim();
+
+
+            if (!texto) return;
+
+
+            agregarMensaje(
+                texto,
+                "usuario"
+            );
+
+
             input.value = "";
 
-            const cargando = document.createElement("div");
-            cargando.className = "mensaje mensaje-ia cargando";
-            cargando.innerText = "Escribiendo...";
-            document.getElementById("cuerpoChat").appendChild(cargando);
-            document.getElementById("cuerpoChat").scrollTop = 99999;
 
-            const respuesta = await obtenerRespuestaIA(texto);
+            const cargando =
+                document.createElement(
+                    "div"
+                );
+
+
+            cargando.className =
+                "mensaje mensaje-ia cargando";
+
+
+            cargando.innerText =
+                "Escribiendo...";
+
+
+            document.getElementById(
+                "cuerpoChat"
+            ).appendChild(cargando);
+
+
+            document.getElementById(
+                "cuerpoChat"
+            ).scrollTop = 99999;
+
+
+            const respuesta =
+                await obtenerRespuestaIA(
+                    texto
+                );
+
+
             cargando.remove();
-            agregarMensaje(respuesta, "ia");
+
+
+            agregarMensaje(
+                respuesta,
+                "ia"
+            );
+
         }
+
     </script>
+
 </body>
 </html>
