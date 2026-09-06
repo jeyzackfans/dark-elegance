@@ -56,27 +56,11 @@
         .chat-input{flex:1;padding:12px 15px;background:#12182b;border:1px solid #253050;border-radius:20px;color:#fff;outline:none;font-size:15px}
         .chat-btn{background:#405899;border:none;border-radius:20px;padding:12px 20px;color:#fff;cursor:pointer}
         .cargando{font-style:italic;color:#888;opacity:0.7}
-
-        .modal-clave{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:9999}
-        .modal-contenido{background:#12182b;border:1px solid #253050;border-radius:12px;padding:30px;max-width:420px;width:90%}
-        .modal-contenido h3{margin-bottom:15px;color:#e0e7ff}
-        .modal-contenido input{width:100%;padding:12px;margin:10px 0;background:#1a233a;border:1px solid #304067;border-radius:6px;color:#fff;outline:none;font-size:14px}
-        .modal-contenido button{width:100%;padding:12px;background:#405899;border:none;border-radius:6px;color:#fff;cursor:pointer;font-size:16px}
-        .modal-contenido button:hover{background:#5068b9}
     </style>
 </head>
 <body>
 
-    <div class="modal-clave" id="ventanaClave">
-        <div class="modal-contenido">
-            <h3>🔑 Ingresa tu Clave API de Groq</h3>
-            <input type="text" id="entradaClave" placeholder="Ej: gsk_xxxxxxxxxxxxxx">
-            <button onclick="iniciarConClave()">✅ Entrar y Activar</button>
-            <p style="font-size:12px;color:#888;margin-top:10px">* Tu clave nunca se guarda en el código ni se envía a terceros</p>
-        </div>
-    </div>
-
-    <div class="contenedor" id="pantallaPrincipal" style="display:none">
+    <div class="contenedor" id="pantallaPrincipal">
         <h1>DARK ELEGANCE</h1>
         <p class="subtitulo">Tu novia virtual al alcance de tus manos</p>
         <div class="etiqueta-edad">18+ • Experiencia virtual</div>
@@ -100,7 +84,7 @@
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/7c4Pups.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/mBJEJIJ.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/3fktETt.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
+                <div class="carrusel-foto" style="background-image:url("https://i.imgur.com/cmTe3wP.jpeg")"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/qpqf2jm.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4tMKHXs.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SFIsIYU.jpeg')"></div>
@@ -143,20 +127,6 @@
     <div id="seccionChat" class="seccion-chat"></div>
 
     <script>
-        let GROQ_API_KEY = "";
-
-        function iniciarConClave(){
-            const entrada = document.getElementById("entradaClave");
-            const clave = entrada.value.trim();
-            if(!clave || !clave.startsWith("gsk_")){
-                alert("❌ Escribe una clave válida, debe empezar con gsk_");
-                return;
-            }
-            GROQ_API_KEY = clave;
-            document.getElementById("ventanaClave").style.display = "none";
-            document.getElementById("pantallaPrincipal").style.display = "block";
-        }
-
         const datosChicas = {
             midori: {
                 nombre: "Midori 🩷",
@@ -198,23 +168,18 @@
 
         let chicaActual = "";
 
+        // 🤖 CONEXIÓN DIRECTA A CLOUDFLARE WORKERS AI — SIN CLAVES, SIN PROBLEMAS
         async function obtenerRespuestaIA(mensajeUsuario) {
-            if(!GROQ_API_KEY){
-                return "⚠️ No hay clave activa — recarga y ponla de nuevo.";
-            }
             const chica = datosChicas[chicaActual];
             chica.historial.push({ role: "user", content: mensajeUsuario });
 
             try {
-                const respuesta = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                const respuesta = await fetch("https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/run/@cf/meta/llama-3.1-8b-instruct", {
                     method: "POST",
                     headers: {
-                        "Authorization": `Bearer ${GROQ_API_KEY}`,
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        // ✅ MODELO OFICIAL QUE SÍ EXISTE Y FUNCIONA
-                        model: "llama-3.1-8b-instant",
                         messages: [
                             { role: "system", content: chica.personalidad },
                             ...chica.historial
@@ -225,14 +190,14 @@
                 });
 
                 const datos = await respuesta.json();
-                if (!datos.choices) throw new Error(datos.error?.message || "Sin respuesta");
-                const textoRespuesta = datos.choices[0].message.content.trim();
+                if (!datos.result) throw new Error("Sin respuesta");
+                const textoRespuesta = datos.result.response.trim();
                 chica.historial.push({ role: "assistant", content: textoRespuesta });
                 return textoRespuesta;
 
             } catch (error) {
                 console.error("ERROR:", error);
-                return `❌ Error: ${error.message || "No se pudo conectar"}`;
+                return "Ups... se me fue la mente un momento 😅 Inténtalo otra vez?";
             }
         }
 
