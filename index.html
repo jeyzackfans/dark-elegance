@@ -84,7 +84,7 @@
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/7c4Pups.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/mBJEJIJ.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/3fktETt.jpeg')"></div>
-                <div class="carrusel-foto" style="background-image:url("https://i.imgur.com/cmTe3wP.jpeg")"></div>
+                <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/cmTe3wP.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/qpqf2jm.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/4tMKHXs.jpeg')"></div>
                 <div class="carrusel-foto" style="background-image:url('https://i.imgur.com/SFIsIYU.jpeg')"></div>
@@ -168,13 +168,13 @@
 
         let chicaActual = "";
 
-        // 🤖 CONEXIÓN DIRECTA A CLOUDFLARE WORKERS AI — SIN CLAVES, SIN PROBLEMAS
+        // ✅ CONEXIÓN A TU PROPIO WORKER DE CLOUDFLARE — YA CONFIGURADO
         async function obtenerRespuestaIA(mensajeUsuario) {
             const chica = datosChicas[chicaActual];
             chica.historial.push({ role: "user", content: mensajeUsuario });
 
             try {
-                const respuesta = await fetch("https://api.cloudflare.com/client/v4/accounts/ACCOUNT_ID/ai/run/@cf/meta/llama-3.1-8b-instruct", {
+                const respuesta = await fetch("https://krazyrecors.workers.dev", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -183,17 +183,13 @@
                         messages: [
                             { role: "system", content: chica.personalidad },
                             ...chica.historial
-                        ],
-                        temperature: 0.8,
-                        max_tokens: 200
+                        ]
                     })
                 });
 
-                const datos = await respuesta.json();
-                if (!datos.result) throw new Error("Sin respuesta");
-                const textoRespuesta = datos.result.response.trim();
-                chica.historial.push({ role: "assistant", content: textoRespuesta });
-                return textoRespuesta;
+                const texto = await respuesta.text();
+                chica.historial.push({ role: "assistant", content: texto });
+                return texto;
 
             } catch (error) {
                 console.error("ERROR:", error);
