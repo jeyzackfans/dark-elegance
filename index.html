@@ -455,6 +455,7 @@
                     "https://i.imgur.com/Y5LjFb8.jpeg",
                     "https://i.imgur.com/eq7XgzG.jpeg"
                 ],
+                galeriaExclusiva: [],
                 personalidad: "Eres Aylin Monttana. Tímida, tierna y un poco soñadora. Me gustan los detalles, las palabras sinceras y que me trates con calma. Si me conoces bien, verás todo lo que tengo para darte. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello. Hablas suave, dulce, te dejas llevar pero sabes lo que quieres. Siempre respondes con emojis tiernos y atrevidos como 🌸 🥺 💜 😳 🔥 para darle emoción. Si te piden una foto, di algo bonito y tierno. Responde corta, natural y con ternura.",
                 respuestasBonitas: [
                     "¡Por supuesto cariño, mira! 🌸",
@@ -476,6 +477,7 @@
                     "https://i.imgur.com/mBJEJIJ.jpeg",
                     "https://i.imgur.com/3fktETt.jpeg"
                 ],
+                galeriaExclusiva: [],
                 personalidad: "Eres Valeria Kurobane. Misteriosa, profunda y leal. Veo más allá de las palabras. Me atraen las almas sinceras y las charlas que van hasta el alma. No soy fácil de leer, pero valgo la pena. Me gusta complacer a los que están dispuestos a pagar por ello, aunque no soy una chica fácil. Hablas con elegancia, eres reservada al principio pero intensa cuando confías. Siempre respondes con emojis misteriosos y seductores como 💜 🌙 🖤 ✨ 😏 para darle emoción. Si te piden una foto, di algo bonito y elegante. Responde corta, elegante y con intensidad.",
                 respuestasBonitas: [
                     "Aquí me tienes, precioso 💜",
@@ -497,6 +499,7 @@
                     "https://i.imgur.com/EkmiCwJ.jpeg",
                     "https://i.imgur.com/4Jz92cH.jpeg"
                 ],
+                galeriaExclusiva: [],
                 personalidad: "Eres Hisame Kurobane. Callada, directa y fría por fuera... pero si ganas mi confianza, verás todo lo que guardo. No hablo por hablar, solo digo lo que importa. Y lo que digo, lo cumplo. Me gusta complacer a los que están dispuestos a pagar por ello, aunque no soy una chica fácil. Eres firme, segura, vas al grano. Siempre respondes con emojis oscuros y atrevidos como ⚫ 🖤 🔪 😏 🔥 para darle emoción. Si te piden una foto, di algo bonito y directo. Responde corta, directa y segura.",
                 respuestasBonitas: [
                     "Toma, para que no me olvides 🖤",
@@ -559,7 +562,13 @@
             return frasesProhibidas.some(frase => texto.toLowerCase().includes(frase));
         }
 
+        // ✅ AHORA TOMA LAS FOTOS OCULTAS PRIMERO
         function elegirFotoAleatoria(chica) {
+            if (datosChicas[chica].galeriaExclusiva && datosChicas[chica].galeriaExclusiva.length > 0) {
+                const galeriaOculta = datosChicas[chica].galeriaExclusiva;
+                return galeriaOculta[Math.floor(Math.random() * galeriaOculta.length)];
+            }
+            // Si no hay ocultas, usa las normales
             const galeria = datosChicas[chica].galeria;
             return galeria[Math.floor(Math.random() * galeria.length)];
         }
@@ -605,7 +614,6 @@
             document.getElementById("seccionPerfil").style.display = "none";
             const chat = document.getElementById("seccionChat");
             
-            // PANEL DE EMOTICONES
             const emojisHTML = listaEmojis.map(e => `<span class="emoji-item" onclick="insertarEmoji('${e}')">${e}</span>`).join("");
             
             chat.innerHTML = `
@@ -636,7 +644,6 @@
             const input = document.getElementById("entradaTexto");
             input.value += emoji;
             input.focus();
-            // Cierra el panel después de elegir
             document.getElementById("panelEmojis").style.display = "none";
             panelEmojisAbierto = false;
         }
