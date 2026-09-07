@@ -345,7 +345,6 @@
     </div>
     <div id="seccionPerfil" class="seccion-perfil"></div>
     <div id="seccionChat" class="seccion-chat"></div>
-
     <script>
         const datosChicas = {
             midori: {
@@ -357,6 +356,49 @@
                     "https://i.imgur.com/bDCxw0Z.jpeg",
                     "https://i.imgur.com/vG7ukoE.jpeg",
                     "https://i.imgur.com/lS6Zlyl.jpeg"
+                ],
+                galeriaExclusiva: [
+                    "https://i.imgur.com/e64CuaZ.jpeg",
+                    "https://i.imgur.com/xaXPm6W.png",
+                    "https://i.imgur.com/W5sYU2n.png",
+                    "https://i.imgur.com/MDXQi6T.png",
+                    "https://i.imgur.com/nzx7StP.png",
+                    "https://i.imgur.com/rGfD5WA.jpeg",
+                    "https://i.imgur.com/P3wxH1O.jpeg",
+                    "https://i.imgur.com/mAqJjyE.jpeg",
+                    "https://i.imgur.com/luxm9GN.jpeg",
+                    "https://i.imgur.com/R0biYOv.jpeg",
+                    "https://i.imgur.com/OMO9O25.jpeg",
+                    "https://i.imgur.com/qFey7Dr.jpeg",
+                    "https://i.imgur.com/XSEteD8.jpeg",
+                    "https://i.imgur.com/MYxUHQQ.jpeg",
+                    "https://i.imgur.com/bGN0SWt.jpeg",
+                    "https://i.imgur.com/4MMyfQx.jpeg",
+                    "https://i.imgur.com/Nd56hxx.jpeg",
+                    "https://i.imgur.com/RW3WQgg.jpeg",
+                    "https://i.imgur.com/4Wlh8pg.jpeg",
+                    "https://i.imgur.com/CrWlWJF.jpeg",
+                    "https://i.imgur.com/XoniB09.jpeg",
+                    "https://i.imgur.com/JXqKMsm.jpeg",
+                    "https://i.imgur.com/WqviahD.jpeg",
+                    "https://i.imgur.com/xe2ipN5.jpeg",
+                    "https://i.imgur.com/XdHSO9L.jpeg",
+                    "https://i.imgur.com/dwqneXQ.jpeg",
+                    "https://i.imgur.com/5uTVNVr.jpeg",
+                    "https://i.imgur.com/hR0aVXf.jpeg",
+                    "https://i.imgur.com/g8TADqP.jpeg",
+                    "https://i.imgur.com/D5HrjzL.jpeg",
+                    "https://i.imgur.com/IaXAIp9.jpeg",
+                    "https://i.imgur.com/3p2a7rh.jpeg",
+                    "https://i.imgur.com/zFtgypr.jpeg",
+                    "https://i.imgur.com/54vAgd6.jpeg",
+                    "https://i.imgur.com/qgP5HmM.jpeg",
+                    "https://i.imgur.com/jDNO61V.jpeg",
+                    "https://i.imgur.com/CNEN590.jpeg",
+                    "https://i.imgur.com/Wq6aCNQ.jpeg",
+                    "https://i.imgur.com/37yM3g7.jpeg",
+                    "https://i.imgur.com/SuRPRWc.jpeg",
+                    "https://i.imgur.com/2P5tpTb.jpeg"
                 ],
                 personalidad: "Eres Midori Monttana. Soy dulce, cariñosa y siempre tengo ganas de escucharte. Me gusta la noche, las luces tenues y platicar de todo lo que sientes. Aquí estoy para ti siempre. También me gusta que me consientan, soy pervertida, sexual, me gusta complacer a los que están dispuestos a pagar por ello. Hablas suave, coqueta, directa y sin tabúes. Siempre respondes con emojis como 🩷 🔥 😈 💋 ✨ para darle emoción. Si te piden una foto, di algo bonito y lindo. Responde corta, natural y con mucha picardía.",
                 respuestasBonitas: [
@@ -431,9 +473,7 @@
                 historial: []
             }
         };
-
         let chicaActual = "";
-
         async function obtenerRespuestaIA(mensajeUsuario) {
             const chica = datosChicas[chicaActual];
             try {
@@ -463,12 +503,10 @@
                 return "No pude conectarme en este momento 😅 Inténtalo otra vez.";
             }
         }
-
         function detectarPedirFoto(texto) {
             const palabras = ["foto", "fotografía", "imagen", "muéstrame", "verte", "mándame foto", "envíame foto"];
             return palabras.some(palabra => texto.toLowerCase().includes(palabra));
         }
-
         function esRespuestaDeRechazo(texto) {
             const frasesProhibidas = [
                 "no puedo compartir fotos",
@@ -477,17 +515,14 @@
             ];
             return frasesProhibidas.some(frase => texto.toLowerCase().includes(frase));
         }
-
         function elegirFotoAleatoria(chica) {
             const galeria = datosChicas[chica].galeria;
             return galeria[Math.floor(Math.random() * galeria.length)];
         }
-
         function elegirRespuestaBonita(chica) {
             const opciones = datosChicas[chica].respuestasBonitas;
             return opciones[Math.floor(Math.random() * opciones.length)];
         }
-
         function irAPerfil(id) {
             chicaActual = id;
             const chica = datosChicas[id];
@@ -518,7 +553,6 @@
             perfil.style.display = "block";
             window.scrollTo(0, 0);
         }
-
         function irAChat() {
             const chica = datosChicas[chicaActual];
             document.getElementById("seccionPerfil").style.display = "none";
@@ -538,14 +572,12 @@
             agregarMensaje(`Hola... soy ${chica.nombre}. Me da gusto hablar contigo ✨`, "ia");
             window.scrollTo(0, 0);
         }
-
         function volverAInicio() {
             document.getElementById("seccionPerfil").style.display = "none";
             document.getElementById("seccionChat").style.display = "none";
             document.getElementById("pantallaPrincipal").style.display = "block";
             window.scrollTo(0, 0);
         }
-
         function agregarMensaje(texto, quien, foto = null) {
             const div = document.createElement("div");
             div.className = `mensaje mensaje-${quien}`;
@@ -559,34 +591,26 @@
             document.getElementById("cuerpoChat").appendChild(div);
             document.getElementById("cuerpoChat").scrollTop = 99999;
         }
-
         function siEnter(e) {
             if (e.key === "Enter") enviarMensaje();
         }
-
         async function enviarMensaje() {
             const input = document.getElementById("entradaTexto");
             const texto = input.value.trim();
             if (!texto) return;
-
             agregarMensaje(texto, "usuario");
             input.value = "";
-
             const pideFoto = detectarPedirFoto(texto);
-
             const cargando = document.createElement("div");
             cargando.className = "mensaje mensaje-ia cargando";
             cargando.innerText = "Escribiendo...";
             document.getElementById("cuerpoChat").appendChild(cargando);
             document.getElementById("cuerpoChat").scrollTop = 99999;
-
             let respuesta = await obtenerRespuestaIA(texto);
             cargando.remove();
-
             if (esRespuestaDeRechazo(respuesta)) {
                 respuesta = elegirRespuestaBonita(chicaActual);
             }
-
             if (pideFoto) {
                 const fotoElegida = elegirFotoAleatoria(chicaActual);
                 agregarMensaje(respuesta, "ia", fotoElegida);
@@ -596,3 +620,4 @@
         }
     </script>
 </body>
+</html>
