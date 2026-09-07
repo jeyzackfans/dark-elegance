@@ -251,6 +251,8 @@
         .chat-caja {
             display: flex;
             gap: 10px;
+            align-items: center;
+            position: relative;
         }
         .chat-input {
             flex: 1;
@@ -270,6 +272,38 @@
             color: #fff;
             cursor: pointer;
         }
+        .btn-emoji {
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: .2s;
+        }
+        .btn-emoji:hover { background: #253050; }
+        .panel-emojis {
+            position: absolute;
+            bottom: 55px;
+            left: 0;
+            background: #1a233a;
+            border: 1px solid #304067;
+            border-radius: 12px;
+            padding: 12px;
+            display: none;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 320px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.5);
+        }
+        .emoji-item {
+            font-size: 22px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: .2s;
+        }
+        .emoji-item:hover { background: #253050; }
         .cargando {
             font-style: italic;
             color: #888;
@@ -473,7 +507,13 @@
                 historial: []
             }
         };
+
+        // LISTA DE EMOTICONES
+        const listaEmojis = ["🩷", "💜", "🌸", "🥺", "😳", "🔥", "😈", "💋", "✨", "🌙", "🖤", "😏", "⚫", "💔", "❤️", "💋", "😘", "😍", "🥰", "😻", "💌", "💍", "🌹", "🥀", "💫", "⭐", "🌟", "💧", "🌊", "☁️", "🌑", "🔮", "💭", "🫦", "👀", "💅", "🤫", "🤐", "😽", "🤭", "🙈", "💦", "🔒", "🗝️"];
+
         let chicaActual = "";
+        let panelEmojisAbierto = false;
+
         async function obtenerRespuestaIA(mensajeUsuario) {
             const chica = datosChicas[chicaActual];
             try {
@@ -503,10 +543,12 @@
                 return "No pude conectarme en este momento 😅 Inténtalo otra vez.";
             }
         }
+
         function detectarPedirFoto(texto) {
             const palabras = ["foto", "fotografía", "imagen", "muéstrame", "verte", "mándame foto", "envíame foto"];
             return palabras.some(palabra => texto.toLowerCase().includes(palabra));
         }
+
         function esRespuestaDeRechazo(texto) {
             const frasesProhibidas = [
                 "no puedo compartir fotos",
@@ -515,14 +557,17 @@
             ];
             return frasesProhibidas.some(frase => texto.toLowerCase().includes(frase));
         }
+
         function elegirFotoAleatoria(chica) {
             const galeria = datosChicas[chica].galeria;
             return galeria[Math.floor(Math.random() * galeria.length)];
         }
+
         function elegirRespuestaBonita(chica) {
             const opciones = datosChicas[chica].respuestasBonitas;
             return opciones[Math.floor(Math.random() * opciones.length)];
         }
+
         function irAPerfil(id) {
             chicaActual = id;
             const chica = datosChicas[id];
@@ -553,10 +598,15 @@
             perfil.style.display = "block";
             window.scrollTo(0, 0);
         }
+
         function irAChat() {
             const chica = datosChicas[chicaActual];
             document.getElementById("seccionPerfil").style.display = "none";
             const chat = document.getElementById("seccionChat");
+            
+            // PANEL DE EMOTICONES
+            const emojisHTML = listaEmojis.map(e => `<span class="emoji-item" onclick="insertarEmoji('${e}')">${e}</span>`).join("");
+            
             chat.innerHTML = `
                 <div class="chat-cabecera">
                     <button class="btn-volver" onclick="irAPerfil('${chicaActual}')">← Volver</button>
@@ -564,6 +614,8 @@
                 </div>
                 <div class="chat-cuerpo" id="cuerpoChat"></div>
                 <div class="chat-caja">
+                    <button class="btn-emoji" onclick="alternarEmojis()">😀</button>
+                    <div class="panel-emojis" id="panelEmojis">${emojisHTML}</div>
                     <input type="text" class="chat-input" id="entradaTexto" placeholder="Escribe algo..." onkeypress="siEnter(event)">
                     <button class="chat-btn" onclick="enviarMensaje()">Enviar</button>
                 </div>
@@ -572,12 +624,29 @@
             agregarMensaje(`Hola... soy ${chica.nombre}. Me da gusto hablar contigo ✨`, "ia");
             window.scrollTo(0, 0);
         }
+
+        function alternarEmojis() {
+            const panel = document.getElementById("panelEmojis");
+            panelEmojisAbierto = !panelEmojisAbierto;
+            panel.style.display = panelEmojisAbierto ? "flex" : "none";
+        }
+
+        function insertarEmoji(emoji) {
+            const input = document.getElementById("entradaTexto");
+            input.value += emoji;
+            input.focus();
+            // Cierra el panel después de elegir
+            document.getElementById("panelEmojis").style.display = "none";
+            panelEmojisAbierto = false;
+        }
+
         function volverAInicio() {
             document.getElementById("seccionPerfil").style.display = "none";
             document.getElementById("seccionChat").style.display = "none";
             document.getElementById("pantallaPrincipal").style.display = "block";
             window.scrollTo(0, 0);
         }
+
         function agregarMensaje(texto, quien, foto = null) {
             const div = document.createElement("div");
             div.className = `mensaje mensaje-${quien}`;
@@ -591,9 +660,11 @@
             document.getElementById("cuerpoChat").appendChild(div);
             document.getElementById("cuerpoChat").scrollTop = 99999;
         }
+
         function siEnter(e) {
             if (e.key === "Enter") enviarMensaje();
         }
+
         async function enviarMensaje() {
             const input = document.getElementById("entradaTexto");
             const texto = input.value.trim();
